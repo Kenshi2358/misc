@@ -15,10 +15,8 @@
 
 
 # Example of using the split method.
-table_name1 = 'public.anico_benefit_plan_20230411'
-table_name2 = 'anico_benefit_plan_20230411'
+table_name1 = 'public.table_name1'
+table_name2 = 'table_name2'
 
 table_items1 = table_name1.split('.')
 table_items2 = table_name2.split('.')
-
-pass
