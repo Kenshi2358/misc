@@ -1,4 +1,4 @@
-/* Your first rust program.
+/*
 Rust uses multi-line comments with /* */
 Rust uses single line comments with //
 
@@ -17,7 +17,7 @@ The ./ prefix specifies are the file in the current directory.
 The main() function is a predefined function that acts as an entry point to the program.
 
 To check your versin of Rust, type: rustc -V
-To check your versino of Cargo, type: cargo -V
+To check your version of Cargo, type: cargo -V
 To update rust, type: rustup update
 
 To create a new cargo package, type: cargo new project_name
