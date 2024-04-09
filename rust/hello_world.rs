@@ -1,24 +1,23 @@
 /* Your first rust program.
-This defines a function called main.
-The fn keyword is used to define a function. */
+Rust uses multi-line comments with /* */
+Rust uses single line comments with //
 
-// fn
-// main(){
-//     println!("Rust says Hello")
-// }
+The fn keyword is used to define a function.
 
-// This is a single line comment.
+To run this program:
+1) you must compile is first by typing: rustc hello_world.rs
+2) run the compiled code with: ./hello_world
 
-/* This is a
-Multi-line comment
+On a macOS, there is no .exe file extension like on Windows.
+MacOS relies on the Unix-like convention where executables don't have any specific extension.
+
+The ./ prefix specifies are the file in the current directory.
+The main() function is a predefined function that acts as an entry point to the program.
 */
-
-// To run this program, you must compile it first by typing:
-// rustc hello_world.rs
-// Then run the compiled code with: ./hello_world
 
 fn main() {
 
+    println!("Rust says Hello from the main function.");
     message();
 
 }
