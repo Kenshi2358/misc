@@ -73,6 +73,8 @@ docs/_build/
 
 # PyBuilder
 .pybuilder/
+
+# This is being ignored so that we do not upload the target folder from Rust.
 target/
 
 # Jupyter Notebook
