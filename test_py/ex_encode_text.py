@@ -10,7 +10,7 @@ alphabet = list(string.ascii_lowercase)
 
 def encrypt(plain_text, shift_amount):
 
-	new_word = []
+    new_word = []
 
     for i in plain_text:
 
