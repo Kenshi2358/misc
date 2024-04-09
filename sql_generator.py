@@ -1,11 +1,11 @@
 """
-This script creates sql code for the extid and datum sections of import_generation for our shell process script.
+This script creates sql code for the extid and datum sections of import_generation for the shell process scripts.
 The column names of those extids and datums depend on the user input.
 The extid # / datum # also depends on the user input.
 
 Instructions:
 Run python3 sql_generator.py and fill out the GUI depending on your needs.
-There is no Jenkins job for this.
+Run with the VE: sql_generator
 """
 
 import PySimpleGUI as GUI
