@@ -42,6 +42,11 @@ Rust is a statically typed language.
 
 Rust is a compiled language, while Python is an interpeted language.
 
+Clippy is a widely used linter in Rust and usually already comes installed.
+To use it, navigate to the related directory and then type: cargo clippy
+
+To run a check on your Rust program using Rust's built in linter, type: cargo check
+
 */
 
 fn main() {
@@ -49,7 +54,9 @@ fn main() {
     let example = "like this";
     println!("better way to format strings: {example}");
 
-    println!("format twice with: {} and {}", "1", "2");
+    let text1 = "apple";
+    let text2:&str = "orange";
+    println!("format twice with: {} and {}", text1, text2);
 
     println!("hello from the main function.");
 
@@ -68,10 +75,18 @@ fn computations1() {
 
     let weight = 256;
     let height = 257;
-    let score = 258;
+    let mut score = 258;
 
-    println!("age is {} ",age);
-    println!("weight is {}",weight);
-    println!("height is {}",height);
-    println!("score is {}",score);
+    score += 5;
+
+    println!("age is {age} ");
+    println!("weight is {weight}");
+    println!("height is {height}");
+    println!("score is {score}");
+
+    let int_with_separator = 50_000;
+    println!("int value {int_with_separator}");
+
+    let alphabet:char = 'A';
+    println!("alphabet is {}",alphabet);
 }
