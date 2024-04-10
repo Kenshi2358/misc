@@ -63,6 +63,10 @@ fn main() {
     message();
     computations1();
 
+    let int1 = 5;
+    let int2 = 10;
+    sum(int1, int2);
+
 }
 fn message() {
 
@@ -89,4 +93,12 @@ fn computations1() {
 
     let alphabet:char = 'A';
     println!("alphabet is {}",alphabet);
+}
+
+fn sum(int1:i32, int2:i32) {
+
+    let sum = int1 + int2;
+
+    println!("The sum of {int1} and {int2} is: {sum}");
+
 }
