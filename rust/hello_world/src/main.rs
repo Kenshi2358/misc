@@ -38,10 +38,17 @@ The Cargo.lock file records the exact version of dependencies used in your proje
 The target folder servers as the output location for compiled artifacts (binaries and libraries) produced by cargo.
 Always ignore the target folder when working with a version control like Git.
 
+Rust is a statically typed language.
+
+Rust is a compiled language, while Python is an interpeted language.
+
 */
 
 fn main() {
 
+    let works = "works";
+    println!("I hope this {works}");
+    println!("format {} arguments", "some");
     println!("Rust says Hello from the main function.");
     message();
 
