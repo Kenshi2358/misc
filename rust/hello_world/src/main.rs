@@ -65,7 +65,8 @@ fn main() {
 
     let int1 = 5;
     let int2 = 10;
-    sum(int1, int2);
+    let int3 = sum(int1, int2);
+    println!("The value of int3 is: {int3}");
 
 }
 fn message() {
@@ -95,10 +96,15 @@ fn computations1() {
     println!("alphabet is {}",alphabet);
 }
 
-fn sum(int1:i32, int2:i32) {
+fn sum(int1:i32, int2:i32) -> i32 {
 
     let sum = int1 + int2;
 
     println!("The sum of {int1} and {int2} is: {sum}");
+
+    // The convention for returning values in a function in Rust,
+    // is to simply give the expression with no keyword return or semicolon.
+    // The last expression is implicitly returned.
+    sum
 
 }
