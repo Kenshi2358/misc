@@ -46,14 +46,32 @@ Rust is a compiled language, while Python is an interpeted language.
 
 fn main() {
 
-    let works = "works";
-    println!("I hope this {works}");
-    println!("format {} arguments", "some");
-    println!("Rust says Hello from the main function.");
+    let example = "like this";
+    println!("better way to format strings: {example}");
+
+    println!("format twice with: {} and {}", "1", "2");
+
+    println!("hello from the main function.");
+
     message();
+    computations1();
 
 }
 fn message() {
 
-    println!("This is a sentence.");
+    println!("This is a sentence from the message function.");
+}
+
+fn computations1() {
+
+    let age = 255;
+
+    let weight = 256;
+    let height = 257;
+    let score = 258;
+
+    println!("age is {} ",age);
+    println!("weight is {}",weight);
+    println!("height is {}",height);
+    println!("score is {}",score);
 }
