@@ -46,6 +46,9 @@ To use it, navigate to the related directory and then type: cargo clippy
 
 To run a check on your Rust program using Rust's built in linter, type: cargo check
 
+The datatype: %str is a string literal.
+Used when the value of a string is known at compile time.
+
 */
 
 fn main() {
@@ -67,6 +70,12 @@ fn main() {
     let int3 = sum(int1, int2);
     println!("The value of int3 is: {int3}");
 
+    // Example: Creating an empty string object using the new() method.
+    // Then setting its value to hello.
+    let mut text3 = String::new();
+    text3.push_str("example of setting the value of a string object");
+    println!("{text3}"
+)
 }
 fn message() {
 
