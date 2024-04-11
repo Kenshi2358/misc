@@ -51,7 +51,7 @@ To run a check on your Rust program using Rust's built in linter, type: cargo ch
 fn main() {
 
     let example = "like this";
-    println!("better way to format strings: {example}");
+    println!("\nbetter way to format strings: {example}");
 
     let text1 = "apple";
     let text2:&str = "orange";
