@@ -8,7 +8,7 @@ To run this program:
 1) you must compile is first by typing: rustc hello_world.rs
 2) run the compiled code with: ./hello_world
 
-Alternatively, you can run: cargo run to do both
+Alternatively, you can run: cargo run
 
 On a macOS, there is no .exe file extension like on Windows.
 MacOS relies on the Unix-like convention where executables don't have any specific extension.
@@ -21,8 +21,7 @@ To check your version of Cargo, type: cargo -V
 To update rust, type: rustup update
 
 To create a new cargo package, type: cargo new project_name
-
-Then you can quickly compile and run this with: cargo run
+You can compile and run with: cargo run
 
 Rust packages tend to be more self-contained than pip with Python.
 
