@@ -1,6 +1,6 @@
 import os
 
-local_path = '/Users/shahnert/Downloads/folder2/'
+local_path = '/Users/some_user/Downloads/folder1/'
 file_name = 'some_file.txt'
 
 def upload1(file, _dir) -> None:
