@@ -168,7 +168,7 @@ def create_address1_code(all_columns_dictionary):
     if long_str[-1] == ',':
         long_str = long_str[:-1]
 
-    long_str += f"""
+    long_str += """
         from schema1.table1
         where some_clause
     ) as t;"
@@ -248,7 +248,7 @@ def create_address2_code(all_columns_dictionary):
     if pro_str[-1] == ',':
         pro_str = pro_str[:-1]
 
-    pro_str += f"""
+    pro_str += """
         from schema3.table3
         where some_clause
     ) as t;"
@@ -267,7 +267,7 @@ def create_correlation_tab(writer: pd.ExcelWriter, df: pd.DataFrame, filtered_no
 
     Look for an address column.
     If found, look for an extid column.
-    If found, convert data type to category and run correlation between the columns.    
+    If found, convert data type to category and run correlation between the columns.
     """
 
     address_keywords_list = ['address']
@@ -320,7 +320,7 @@ def create_correlation_tab(writer: pd.ExcelWriter, df: pd.DataFrame, filtered_no
 def create_one_column_tabs(writer: pd.ExcelWriter, df: pd.DataFrame, filtered_non_null_dictionary: dict) -> int:
     """
     Create 1 column distinct counts for each column.
-    Only view columns if the unique record set is under 10k records.    
+    Only view columns if the unique record set is under 10k records.
     """
 
     column_count = 0
@@ -349,7 +349,7 @@ def create_two_column_tabs(writer: pd.ExcelWriter, df: pd.DataFrame, sorted_dict
     The columns are chosen based on:
     a) the # of uniques.
     b) Using that column a max of 5 times.
-    c) Not containing forward slashes or colons.        
+    c) Not containing forward slashes or colons.
     """
 
     used_count_dict = {}
