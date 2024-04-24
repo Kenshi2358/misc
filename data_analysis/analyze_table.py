@@ -122,7 +122,7 @@ def create_address1_code(all_columns_dictionary):
     fax_g = determine_column_name(all_columns_dictionary, fax_list)
 
     # Create a long string to output.
-    long_str = f"""
+    long_str = """
     select1="
     select t.*
     into schema2.table2
@@ -426,10 +426,21 @@ def prettify_workbook(full_path: str) -> None:
     logger.info(f'Saving workbook to {full_path}')
 
 
-def main(db_host, db_name, schema_table_name, username, temp_path=None, bucket=None, sql_only=None):
+def main(args):
     """
     Main function to retrieve records, store them into a dataframe, and output stats.
     """
+
+    # Required
+    db_host = args.db_host
+    db_name = args.db_name
+    schema_table_name = args.table_name
+    username = args.username
+
+    # Optional
+    temp_path = args.path
+    bucket = args.bucket
+    sql_only = args.sql_only
 
     # Connect to the correct database.
     wh_connection = DB_Helper(host=db_host, database=db_name, user=username)
@@ -437,7 +448,7 @@ def main(db_host, db_name, schema_table_name, username, temp_path=None, bucket=N
 
     new_table_list = schema_table_name.split('.')
     if len(new_table_list) != 2:
-        logger.critical("Need schema and table specified in the table parameter, separated by a period. Ending program early.")
+        logger.critical("Need schema and table in the table parameter, separated by a period.")
         exit(1)
 
     my_schema = new_table_list[0]
@@ -710,10 +721,10 @@ if __name__ == "__main__":
     parser.add_argument("-table_name", "--table_name", type=str, help="table name including the schema", required=True)
     parser.add_argument("-username", "--username", type=str, help="username", required=True)
 
-    parser.add_argument("-path", "--path", type=str, help="The local file path on the server for where to temporarily save files.", required=False)
+    parser.add_argument("-path", "--path", type=str, help="The local file path to save files.", required=False)
     parser.add_argument("-bucket", "--bucket", type=str, help="Where output file will be saved on s3.", required=False)
     parser.add_argument("-sql_only", "--sql_only", type=str, required=False)
 
     args = parser.parse_args()
 
-    main(args.db_host, args.db_name, args.table_name, args.username, temp_path=args.path, bucket=args.bucket, sql_only=args.sql_only)
+    main(args)
