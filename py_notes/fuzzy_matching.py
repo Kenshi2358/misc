@@ -2,9 +2,8 @@
 Fuzzy matching example.
 
 Using fuzz.ratio, a score of 100 is a perfect score and the strings match exactly.
-
-
 """
+
 from thefuzz import fuzz
 
 str1 = "cat"
