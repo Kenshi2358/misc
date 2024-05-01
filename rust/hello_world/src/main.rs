@@ -38,7 +38,6 @@ The target folder servers as the output location for compiled artifacts (binarie
 Always ignore the target folder when working with a version control like Git.
 
 Rust is a statically typed language.
-
 Rust is a compiled language, while Python is an interpeted language.
 
 Clippy is a widely used linter in Rust and usually already comes installed.
@@ -53,14 +52,16 @@ Used when the value of a string is known at compile time.
 
 fn main() {
 
-    let example = "like this";
-    println!("\nbetter way to format strings: {example}");
+    // Basic print.
+    println!("hello from the main function.");
 
+    // Formatting examples.
     let text1 = "apple";
     let text2:&str = "orange";
-    println!("format twice with: {} and {}", text1, text2);
+    println!("Formatting with brackets and comma: {} and {}", text1, text2);
 
-    println!("hello from the main function.");
+    let example = "like this";
+    println!("\nBetter formatting - formatting with brackets only: {example}");
 
     message();
     computations1();
