@@ -54,6 +54,13 @@ Used when the value of a string is known at compile time.
 
 The ! in println! denotes that this function is a macro.
 It helps Rust distinguish between macros and regular functions.
+
+To debug a rust program in VSCode on a macOS, you need to install the extension: CodeLLDB
+Then in the launch.json file, specify:
+"type": "lldb",
+"request": "launch",
+"program": "${workspaceFolder}/rust/hello_world/target/debug/hello_world",
+
 */
 
 fn main() {
