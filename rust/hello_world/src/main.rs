@@ -111,6 +111,14 @@ fn sum(int1:i32, int2:i32) -> i32 {
 
     println!("The sum of {int1} and {int2} is: {sum}");
 
+    let threshold_num = 20;
+
+    if sum > threshold_num {
+        println!("The sum is greater than {threshold_num}.");
+    } else {
+        println!("The sum is less than or equal to {threshold_num}.");
+    }
+
     // The convention for returning values in a function,
     // is to give the expression with no keyword return or semicolon.
     // The last expression is implicitly returned.
