@@ -66,9 +66,9 @@ Then in the launch.json file, specify:
 fn main() {
 
     println!("hello from the main function.");
+    message();
 
     formatting_examples();
-    message();
     computations1();
     empty_string_example();
 }
@@ -85,7 +85,7 @@ fn formatting_examples() {
 
 fn message() {
 
-    println!("This is a sentence from the message function.");
+    println!("hello from the message function.");
 }
 
 fn computations1() {
@@ -104,7 +104,7 @@ fn computations1() {
     println!("int value is: {int_with_separator}");
 
     let alphabet:char = 'A';
-    println!("alphabet is: {}",alphabet);
+    println!("alphabet is: {alphabet}");
 
     let int1 = 5;
     let int2 = 10;
