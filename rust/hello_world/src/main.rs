@@ -63,36 +63,67 @@ Then in the launch.json file, specify:
 
 */
 
-fn main() {
-
-    println!("hello from the main function.");
-    message();
-
-    formatting_examples();
-    computations1();
-    empty_string_example();
-}
-
-fn formatting_examples() {
-
-    let text1 = "apple";
-    let text2:&str = "orange";
-    println!("\nFormatting with brackets and comma: {} and {}", text1, text2);
-
-    let example = "like this";
-    println!("Better formatting - formatting with brackets only: {example}\n");
-}
-
 fn message() {
 
     println!("hello from the message function.");
 }
 
+fn formatting_examples() {
+
+    let text1 = "apple";
+
+    // Declare variable as a string literal, using the &str keyword.
+    let text2:&str = "orange";
+
+    println!("\nFormatting with brackets and comma: {} and {}", text1, text2);
+
+    let example = "like this";
+    println!("Better formatting - formatting with brackets only: {example}\n");
+
+}
+
+fn string_append_examples() {
+
+    println!("String append examples:");
+
+    // Declare variable with no data type.
+    let text1 = "dog";
+
+    // Declare variable as a string literal.
+    let text2:&str = "cat";
+
+    let text3 = format!("{text1} {text2}");
+    println!("text3 with format!: {text3}");
+
+    // to_string() method converts a given value to a string.
+    let text3 = text1.to_string() + " " + text2;
+    println!("text3 using to_string(): {text3}");
+
+    let text3 = text2.to_string() + " hat";
+    println!("text3: {text3}");
+
+    let text4:&str = "mouse";
+    let text5:&str = "deer";
+
+    let text6 = text4.to_owned() + " " + text5;
+    println!("text6 using to_owned(): {text6}");
+
+    // Declare a mutable variable, string object. Show different ways to concatenate strings.
+    let mut combined_str = String::from("jump");
+    combined_str.push_str(" run");
+    combined_str += " skip";
+    combined_str = combined_str + " hop";
+    println!("combined_str: {combined_str}\n");
+
+}
+
+
 fn computations1() {
 
     let age = 255;
 
-    let weight = 256;
+    // Declare variable weight with data type: 32 bit signed integer.
+    let weight:i32 = 256;
     let height = 257;
     let mut score = 258;
 
@@ -139,6 +170,18 @@ fn empty_string_example() {
     // Then setting its value to the word cat.
     let mut text3 = String::new();
     text3.push_str("cat");
-    println!("text3 is: {text3}");
+    println!("empty_string_example: {text3}");
 
+}
+
+fn main() {
+
+    println!("\nhello from the main function.");
+    message();
+
+    formatting_examples();
+    string_append_examples();
+
+    computations1();
+    empty_string_example();
 }
