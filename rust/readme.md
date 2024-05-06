@@ -72,3 +72,10 @@ If you ever want to rename a rust folder:
 Can do this with the "cargo clean" command.
 
 4) Run "cargo build" command or cargo run.
+
+# **Crate Libraries**
+In general, "::" for library imports serves as a path separate when navigating through modules.
+
+You won’t know which traits to use and which methods and functions to call from a crate, so each crate has documentation with instructions for using it.  
+A nice feature of Cargo is that running the `cargo doc --open`  
+command will build documentation provided by all your dependencies locally and open it in your browser.
