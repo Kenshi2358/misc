@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "loop-test1"
+name = "loop_test1"
 version = "0.1.0"

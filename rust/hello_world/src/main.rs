@@ -61,6 +61,14 @@ Then in the launch.json file, specify:
 "request": "launch",
 "program": "${workspaceFolder}/rust/hello_world/target/debug/hello_world",
 
+If you ever want to rename a rust folder:
+1) Rename the folder.
+2) Update the Cargo.toml and cargo.lock package name to the new name.
+3) Remove the target directory since it contains build artifacts and other temporary files.
+Can do this with the "cargo clean" command.
+
+4) Run "cargo build" command or cargo run.
+
 */
 
 fn message() {
