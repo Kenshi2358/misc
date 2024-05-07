@@ -31,9 +31,9 @@ use rand::Rng;
 
 fn main() {
 
-    println!("Guess the number! -- Guess a number between 1 and 100 --");
+    println!("Guess the number! -- Guess a number between 1 and 20 --");
 
-    let secret_number = rand::thread_rng().gen_range(1..=100);
+    let secret_number = rand::thread_rng().gen_range(1..=20);
     //println!("The secret number is: {secret_number}");
 
     let mut num_guesses = 1;
