@@ -90,21 +90,45 @@
 #             logging.info(each_file)
 
 # =====================================================
-# Example of global scoped variables.
+# Global scope example:
 def addition(a, b):
+    global x
     print(x)
+    x += 1
     return a + b
 
 if __name__ == "__main__":
     x = 100
-    print(addition(3, 5))
+    c = addition(a=3, b=5)
+    print(x)
+
+# =========================================
+# Local scope example:
+def check_y():
+    y = 2
+    print(f"value of y inside function is: {y}")
+
+y = 1
+check_y()
+print(f"value of y outside function is: {y}")
+
+# Check all local variables example:
+def demo1():
+    print("Here no local variable  is present : ", locals())
+
+def demo2():
+    name = "John"
+    print("Here local variables are present : ", locals())
+
+demo1()
+demo2()
 
 # =====================================================
 # Example using eval function.
 # Eval evalutes the specified expression.
-some_text = '12345'
-my_var = eval('some_text')
-print(my_var)
+# some_text = '12345'
+# my_var = eval('some_text')
+# print(my_var)
 
 # =====================================================
 # Different ways to concatenate.

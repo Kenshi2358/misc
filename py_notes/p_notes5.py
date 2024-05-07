@@ -62,22 +62,6 @@ logging.basicConfig(
 
 # Tab and # Shift-Tab to move text over or back 1 tab.
 
-# =========================================
-# Python program to understand about locals
-# here no local variable is present
-
-# def demo1():
-#     print("Here no local variable  is present : ", locals())
-
-# # here local variables are present
-# def demo2():
-#     name = "Someones_name"
-#     print("Here local variables are present : ", locals())
-
-# # driver code
-# demo1()
-# demo2()
-
 # =========================
 # Split function returns a list. The length of the list depends on the delimiter.
 # length could be 1 or 5.
