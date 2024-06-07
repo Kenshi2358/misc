@@ -1,4 +1,11 @@
-    
+
+# Standard library imports
+# import os
+
+# 3rd party imports
+# from airflow.models import Variable
+# from jinja2 import Environment, FileSystemLoader
+
 # Local imports
 # current_dir = os.getcwd()
 # parent_dir = os.path.dirname(current_dir)
@@ -16,6 +23,7 @@
     # logging.info(f"report_dir: {report_dir}")
     # logging.info(f"email_dir: {email_dir}")
 
+    # des_noreply = Variable.get("des_noreply")
     # execution_date = default_args['start_date']
 
     # ----------------------------------
