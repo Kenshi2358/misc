@@ -61,3 +61,15 @@
     #     rowspan = sum(detail.get('tablename') == each_container['tablename'] for detail in import_details)
     #     rowspan = rowspan + 1 if rowspan != 1 else rowspan
     #     each_container['rowspan'] = rowspan
+
+
+    # Add everything to kwargs.
+    # kwargs_list = [
+    #     table_server_style, td_server_css1, td_server_css2, table_counts_style,
+    #     pre_timestamp, post_timestamp, td_header_counts_css1, td_header_counts_css2,
+    #     td_counts_css1, td_counts_css2, params, report_results
+    # ]
+    # for each_item in kwargs_list:
+    #     for variable_name, variable_value in list(globals().items()):
+    #         if each_item == variable_value:
+    #             kwargs[variable_name] = each_item
