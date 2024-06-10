@@ -56,3 +56,8 @@
     #     tables=job_tables, stats=stats, execution_date=execution_date, var=var
     # )
     # ----------------------------------
+
+    # for each_container in import_details:
+    #     rowspan = sum(detail.get('tablename') == each_container['tablename'] for detail in import_details)
+    #     rowspan = rowspan + 1 if rowspan != 1 else rowspan
+    #     each_container['rowspan'] = rowspan
