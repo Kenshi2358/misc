@@ -15,7 +15,7 @@ The writer decides how to organize the layout.
 
 from flask import Flask
 
-# To use any flask blueprint, you have to import it 
+# To use any flask blueprint, you have to import the blueprint.
 # and then register it in the application using register_blueprint().
 # When a flask blueprint is registered, the application is extended with its contents.
 from ex_blueprint import ex_blueprint
