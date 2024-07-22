@@ -7,7 +7,6 @@ from flask import Blueprint
 ex_blueprint = Blueprint('ex_blueprint', __name__)
 
 # Route is a decorator that allows you to associate a view function to a URL route.
-
 @ex_blueprint.route('/')
 def index():
     return "This is an example app"
