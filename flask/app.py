@@ -2,7 +2,14 @@
 To run this script, cd to this directory in a terminal and type: flask run
 Then open a browser to URL: http://localhost:5000
 
+To change the port, type: flask run -p 3000
+Then go to URL: http://localhost:3000
+
+Can get to the 2nd page by going to: http://localhost:3000/page2
+
 Ctrl+C to quit the flask application.
+
+Flask is a web framework that allows developers to build lightweight web applications quickly.
 
 Flask Blueprints encapsulate functionality, such as views, templates, and other resources.
 A blueprint is a flask class.
