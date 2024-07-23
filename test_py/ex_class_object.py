@@ -1,9 +1,13 @@
 
-
-# Distinction on types of functions.
+# Distinction on the types of functions available in python.
+# -----------------------------------------------------
 # Method - are functions inside a class. Returns value.
 # Function - are functions outside a class. Returns value.
 # Procedures - are functions with no return value.
+# -----------------------------------------------------
+
+# Use classes when you want to save state.
+# When you have data and behavior that go together, use a class.
 
 class coffee_object:
     def __init__(self, type):
@@ -27,8 +31,8 @@ class coffee_object:
 coffee1 = coffee_object('espresso')
 coffee2 = coffee_object('latte')
 
-print(f'coffee1 details: amount: {coffee1.amount} cost: {coffee1.cost} color: {coffee1.color}')
-print(f'coffee1 details: amount: {coffee2.amount} cost: {coffee2.cost} color: {coffee2.color}')
+print(f'coffee1 - amount: {coffee1.amount} cost: ${coffee1.cost:.2f} color: {coffee1.color}')
+print(f'coffee2 - amount: {coffee2.amount} cost: ${coffee2.cost:.2f} color: {coffee2.color}')
 
 coffee1_dictionary = {
         "ingredients": {
