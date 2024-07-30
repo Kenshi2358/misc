@@ -26,7 +26,8 @@ server_container = {
     'sh': 'shangchi',
 
     'a': 'abomination',
-    'k': 'kang'
+    'k': 'kang',
+    'b': 'blade'
 }
 
 server_str1 = f"""
@@ -48,7 +49,8 @@ server_str1 = f"""
     sh - shangchi{Style.RESET_ALL}
 
     misc:{Fore.LIGHTRED_EX}
-    a - abomination, k - kang{Style.RESET_ALL}
+    a - abomination, k - kang
+    b - blade{Style.RESET_ALL}
     """
 
 user_answer1 = input(f'Choose from the server_container:\n{server_str1}\n')
