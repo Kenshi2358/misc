@@ -1,5 +1,4 @@
-
-# Script to lowercase some user given text.
+# Script to lowercase user given text.
 # Typically this is the headers on a file that are all upper cased.
 
 input_text = input("Enter the text you want lower cased:\n")
