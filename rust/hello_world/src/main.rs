@@ -6,7 +6,7 @@ fn message() {
 
 fn formatting_examples() {
 
-    // Declare one variable with no data type and one variablea as a string literal, using the &str keyword.
+    // Declare one variable with no data type and one variable as a string literal, using the &str keyword.
     let text1 = "apple";
     let text2:&str = "orange";
 
