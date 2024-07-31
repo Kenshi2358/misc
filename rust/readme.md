@@ -85,3 +85,7 @@ To add a crate to a file:
 For example to add the thousands crate, add:  
 `[dependencies]`  
 `thousands = "0.2"`
+
+To update a crate / dependency for a file:
+1) Navigate to the file's main directory.
+2) Run: `cargo update`

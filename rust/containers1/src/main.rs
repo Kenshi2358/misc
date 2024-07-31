@@ -4,7 +4,7 @@ fn container_examples() {
     // A tuple is a compound data type. It has a fixed length and the index starts from 0.
     // Declare a tuple with 3 string literals.
     let colors: (&str, &str, &str) = ("blue", "green", "red");
-    println!("\ncolors tuple: {:?}", colors);
+    println!("\ncolors: {:?}", colors);
     println!("The 1st item: {:?}, 2nd: {:?}, 3rd: {:?}", colors.0, colors.1, colors.2);
 
     // Convert a tuple into an array.
@@ -53,11 +53,16 @@ fn container_examples() {
         }
     }
 
+    let dog:&str = "Logan";
+    print_type("dog", &dog);
+
 }
-// fn print_type<T>(_: &T) {
-//     // Identifies the data type. To use, type: print_type(variable_name);
-//     println!("data type: {}", std::any::type_name::<T>());
-// }
+fn print_type<T>(var_name: &str, _: &T) {
+    // Identifies the data type. To use, type: print_type(&variable_name).
+    // You must use the character & before the name.
+    // The & symbol is used to reference the variable rather than passing the variable itself.
+    println!("Variable {} data type: {}", var_name, std::any::type_name::<T>());
+}
 
 fn main() {
     container_examples();
