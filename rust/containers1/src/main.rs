@@ -5,7 +5,7 @@ fn container_examples() {
     // Declare a tuple with 3 string literals.
     let colors: (&str, &str, &str) = ("blue", "green", "red");
     println!("\ncolors tuple: {:?}", colors);
-    println!("The 1st item is: {:?}, 2nd: {:?}, 3rd: {:?}", colors.0, colors.1, colors.2);
+    println!("The 1st item: {:?}, 2nd: {:?}, 3rd: {:?}", colors.0, colors.1, colors.2);
 
     // Convert a tuple into an array.
     let colors_array: [&str; 3] = colors.into();
@@ -14,8 +14,13 @@ fn container_examples() {
     // Loop through the array.
     for each_item in colors_array.iter() {
         println!("color: {each_item}");
-        if each_item.to_string() == "red" {
-            println!("");
+
+        // Option 1:
+        //if each_item.to_string() == "red" {
+
+        // Option 2:
+        if *each_item == "red" {
+            println!();
         }
     }
 
@@ -26,8 +31,8 @@ fn container_examples() {
     // Loop through the array.
     for each_item in types.iter() {
         println!("type: {each_item}");
-        if each_item.to_string() == "water" {
-            println!("");
+        if *each_item == "water" {
+            println!();
         }
     }
 
@@ -42,6 +47,10 @@ fn container_examples() {
 
     for each_item in v_types.iter() {
         println!("v_type: {each_item}");
+
+        if *each_item == "ground" {
+            println!();
+        }
     }
 
 }
