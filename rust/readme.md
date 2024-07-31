@@ -1,10 +1,9 @@
-# **Markdown Notes**
+<h3 align="left"><strong>Markdown Notes</strong></h3>
 
 To view a markdown file in VS Code, press Shift + Cmd + V.  
 To force a carriage return on a particular line, type two spaces followed by a carriage return.
 
-# **Rust Notes**
-
+<h1 align="left"><strong>Rust Notes</strong></h1>
 Rust is a statically typed language.  
 Rust is a compiled language, while Python is an interpeted language.
 
@@ -42,7 +41,8 @@ Rust packages tend to be more self-contained than pip with Python.
 In Python, pip requires a requirements.txt file for the dependencies.  
 In Rust, cargo uses the Cargo.toml file for the dependencies. Cargo uses Lockfiles, while pip does not.
 
-The toml file for each package is called it's manifest.
+<h2 align="left"><strong>Structure</strong></h2>
+The toml file for each package is called the manifest.
 
 The root directory of your Rust project is your project name. In this case, its: hello_world  
 The Cargo.toml file is the heart of your project configuration.  
@@ -51,9 +51,9 @@ The main.rs file is the entry point of your executable.
 
 The Cargo.lock file records the exact version of dependencies used in your project.  
 The target folder is the output location for compiled artifacts (binaries and libraries) produced by cargo.  
-Always ignore the target folder when working with a version control like Git.
+Always ignore the target folder when working with a version control software like Git.
 
-The datatype: %str is a string literal.  
+The datatype: &str is a string literal.  
 Used when the value of a string is known at compile time.
 
 The ! in println! denotes that this function is a macro.  
@@ -65,7 +65,7 @@ Then in the launch.json file, specify:
 "request": "launch",  
 "program": "${workspaceFolder}/rust/hello_world/target/debug/hello_world",
 
-If you ever want to rename a rust folder:
+To rename a rust folder:
 1) Rename the folder.
 2) Update the Cargo.toml and cargo.lock package name to the new name.
 3) Remove the target directory since it contains build artifacts and other temporary files.
@@ -73,9 +73,15 @@ Can do this with the "cargo clean" command.
 
 4) Run "cargo build" command or cargo run.
 
-# **Crate Libraries**
+<h2 align="left"><strong>Crate Libraries</strong></h2>
 In general, "::" for library imports serves as a path separate when navigating through modules.
 
 You won’t know which traits to use and which methods and functions to call from a crate, so each crate has documentation with instructions for using it.  
 A nice feature of Cargo is that running the `cargo doc --open`  
 command will build documentation provided by all your dependencies locally and open it in your browser.
+
+To add a crate to a file:
+1) Add the crate name to your Cargo.toml file.
+For example to add the thousands crate, add:  
+`[dependencies]`  
+`thousands = "0.2"`

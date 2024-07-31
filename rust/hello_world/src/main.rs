@@ -21,7 +21,7 @@ fn string_append_examples() {
 
     println!("String append examples:");
 
-    // Declare one variable with no data type and one variable as a string literal, using the &str keyword.
+    // Declare one variable with no data type and another as a string literal.
     let text1 = "dog";
     let text2:&str = "cat";
 
@@ -29,6 +29,8 @@ fn string_append_examples() {
     println!("text3 using format!: {text3}");
 
     // to_string() method converts a given value to a string.
+    // This is required for text1 since it was not declared with a data type.
+    // While text 2 was declared as a string, so it does not require this method.
     let text3 = text1.to_string() + " hat " + text2;
     println!("text3 using to_string(): {text3}");
 
@@ -47,7 +49,7 @@ fn string_append_examples() {
     // Declare a mutable variable, string object with text: jump.
     let mut combined_str = String::from("jump");
 
-    // Show different ways to concatenate strings.
+    // Different ways to concatenate strings.
     combined_str.push_str(" run");
     combined_str += " skip";
 
@@ -59,7 +61,6 @@ fn string_append_examples() {
     println!("combined_str: {combined_str}\n");
 
 }
-
 
 fn computations1() {
 
@@ -75,7 +76,11 @@ fn computations1() {
     println!("age is {age}  weight is {weight}  height is {height}  score is {score}");
 
     let int_with_separator = 50_000;
-    println!("int_with_separator is: {int_with_separator}");
+    println!("int_with_separator: {int_with_separator}");
+
+    // Adding a library import for: thousands. Then using the Separable trait.
+    use thousands::Separable;
+    println!("int_with_separator and comma formatted: {}", int_with_separator.separate_with_commas());
 
     let letter1:char = 'A';
     println!("letter1 is: {letter1}");
