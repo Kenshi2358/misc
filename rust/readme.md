@@ -1,6 +1,6 @@
 # **Markdown Notes**
 
-To view a markdown file in VS Code, press Shift + Cmd + V.
+To view a markdown file in VS Code, press Shift + Cmd + V.  
 To force a carriage return on a particular line, type two spaces followed by a carriage return.
 
 # **Rust Notes**
