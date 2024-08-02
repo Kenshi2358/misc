@@ -29,8 +29,7 @@ server_container = {
     'k': 'kang',
     'b': 'blade',
 
-    'pj': 'prd-datamanager-db.des.mdxdata.com',
-    'dj': 'des-engineering-db.des.mdxdata.com'
+    'pj': 'prd-jenkins'
 }
 
 server_str1 = f"""
@@ -54,7 +53,7 @@ server_str1 = f"""
     misc:{Fore.LIGHTRED_EX}
     a - abomination, k - kang
     b - blade
-    pj - prod jenkins, dj - dev jenkins{Style.RESET_ALL}
+    pj - prod jenkins{Style.RESET_ALL}
     """
 
 user_answer1 = input(f'Choose from the server_container:\n{server_str1}\n')
@@ -62,11 +61,7 @@ user_answer1 = input(f'Choose from the server_container:\n{server_str1}\n')
 for key, value in server_container.items():
     if user_answer1 == key:
 
-        server_str1 = ''
-        if key in ('pj', 'dj'):
-            server_str1 = f'ssh {value}'
-        else:
-            server_str1 = f'ssh {value}.des.mdx.med'
+        server_str1 = f'ssh {value}.des.mdx.med'
 
         print(f'Connecting to: {value}')
         os.system(server_str1)
