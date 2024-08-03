@@ -25,7 +25,7 @@ headers = {
 }
 
 url_1 = "https://filmfreeway.com/festivals/"
-url_1 = "https://filmfreeway.com/robots.txt"
+# url_1 = "https://filmfreeway.com/robots.txt"
 
 # with requests.Session() as s:
 #     s.headers.update(headers)
