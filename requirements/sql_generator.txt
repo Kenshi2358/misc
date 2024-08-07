@@ -1,1 +1,0 @@
-PySimpleGUI-4-foss==4.60.4.1
