@@ -36,5 +36,3 @@ print(f"status code: {results.status_code}")
 #time.sleep(20)
 
 pass
-
-
