@@ -7,6 +7,7 @@ This script takes in a text file of a screenplay script and analyzes it.
 """
 # Standard library
 import argparse
+import math
 
 # 3rd party libaries
 import language_tool_python
@@ -138,7 +139,19 @@ def run_stats(full_sentence_list: list, sorted_container: dict):
     print(f'total sentences: {total_num_sentences} - avg characters per sentence: {avg_characters_per_sentence}')
     print(f'total word count: {total_word_count:,} - avg word per sentence: {avg_word_count}')
 
-    pass
+    return total_word_count
+
+
+def get_screenplay_time(content, total_word_count):
+    """get the total amount of time to get through this screenplay."""
+
+    total_seconds = (total_word_count / 265) * 60
+
+    mod_seconds = total_seconds % 60
+    remaining_seconds = round(mod_seconds, 0)
+    total_minutes = math.floor(total_seconds / 60)
+
+    print(f"time: {total_minutes:}:{remaining_seconds:.0f}")
 
 
 def main(args):
@@ -155,9 +168,9 @@ def main(args):
 
     full_sentence_list, sorted_container = create_containers(content)
 
-    run_stats(full_sentence_list, sorted_container)
-    pass
+    total_word_count = run_stats(full_sentence_list, sorted_container)
 
+    get_screenplay_time(content, total_word_count)
 
 if __name__ == "__main__":
     """ Start Process"""
