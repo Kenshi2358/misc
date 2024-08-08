@@ -13,7 +13,7 @@ import math
 import language_tool_python
 
 
-def convert_bad_characters(content):
+def convert_bad_characters(content) -> None:
     """Converts bad characters to good characters"""
 
     print("Converting bad characters")
@@ -28,7 +28,8 @@ def convert_bad_characters(content):
     return content
 
 
-def run_grammar_checker(content):
+def run_grammar_checker(content) -> int:
+    """Returns the # of grammar errors"""
 
     print("Running grammar checker")
 
@@ -53,7 +54,8 @@ def run_grammar_checker(content):
             Correction: {each_match.replacements}
             Context: {each_match.context}"""
             print(output)
-            pass
+
+    return num_matches
 
 
 def create_containers(content):
@@ -117,11 +119,11 @@ def create_containers(content):
     return full_sentence_list, sorted_container
 
 
-def run_stats(full_sentence_list: list, sorted_container: dict):
+def run_stats(full_sentence_list: list, sorted_container: dict, num_errors: int):
     """Runs all statistics"""
 
     total_num_sentences = len(full_sentence_list)
-    print('--- Running Stats ---')
+    print('--- Stats ---')
 
     total_num_characters = 0
     for key1, value1 in sorted_container.items():
@@ -136,13 +138,14 @@ def run_stats(full_sentence_list: list, sorted_container: dict):
 
     avg_word_count = round(total_word_count / total_num_sentences, 1)
 
-    print(f'total sentences: {total_num_sentences} - avg characters per sentence: {avg_characters_per_sentence}')
-    print(f'total word count: {total_word_count:,} - avg word per sentence: {avg_word_count}')
+    print(f'total sentences: {total_num_sentences:,} - avg characters per sentence: {avg_characters_per_sentence}')
+    print(f'total word count: {total_word_count:,} - avg words per sentence: {avg_word_count}')
+    print(f'total grammatical errors: {num_errors}')
 
     return total_word_count
 
 
-def get_screenplay_time(content, total_word_count):
+def get_screenplay_time(content, total_word_count) -> None:
     """get the total amount of time to get through this screenplay."""
 
     total_seconds = (total_word_count / 265) * 60
@@ -164,13 +167,14 @@ def main(args):
 
     content = convert_bad_characters(content)
 
-    run_grammar_checker(content)
+    num_errors = run_grammar_checker(content)
 
     full_sentence_list, sorted_container = create_containers(content)
 
-    total_word_count = run_stats(full_sentence_list, sorted_container)
+    total_word_count = run_stats(full_sentence_list, sorted_container, num_errors)
 
     get_screenplay_time(content, total_word_count)
+
 
 if __name__ == "__main__":
     """ Start Process"""
