@@ -148,7 +148,8 @@ def run_stats(full_sentence_list: list, sorted_container: dict, num_errors: int)
 def get_screenplay_time(content, total_word_count) -> None:
     """get the total amount of time to get through this screenplay."""
 
-    total_seconds = (total_word_count / 265) * 60
+    average_speaking_rate = 150
+    total_seconds = (total_word_count / average_speaking_rate) * 60
 
     mod_seconds = total_seconds % 60
     remaining_seconds = round(mod_seconds, 0)
