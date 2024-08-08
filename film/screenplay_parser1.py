@@ -55,43 +55,9 @@ def run_grammar_checker(content):
             pass
 
 
-def run_stats(full_sentence_list: list, sorted_container: dict):
-    """Runs all statistics"""
+def create_containers(content):
 
-    total_num_sentences = len(full_sentence_list)
-    print('--- Running Stats ---')
-
-    total_num_characters = 0
-    for key1, value1 in sorted_container.items():
-        total_num_characters += (int(key1) * value1['sentence_count'])
-
-    avg_characters_per_sentence = round(total_num_characters / total_num_sentences, 1)
-
-    total_word_count = 0
-    for each_item in full_sentence_list:
-        word_count = len(each_item.split(' '))
-        total_word_count += word_count
-
-    avg_word_count = round(total_word_count / total_num_sentences, 1)
-
-    print(f'total sentences: {total_num_sentences} - avg characters per sentence: {avg_characters_per_sentence}')
-    print(f'total word count: {total_word_count:,} - avg word per sentence: {avg_word_count}')
-
-    pass
-
-
-def main(args):
-
-    fname = args.fname
     full_sentence_list = []
-
-    # Open text file.
-    with open(fname, 'r', encoding='utf-8') as f:
-        content = f.read()
-
-    content = convert_bad_characters(content)
-
-    run_grammar_checker(content)
 
     # Split the text by carriage return.
     lines = content.split('\n')
@@ -146,7 +112,48 @@ def main(args):
 
     # Sort the dictionary by key.
     sorted_container = dict(sorted(full_container.items()))
-    # print(sorted_container)
+
+    return full_sentence_list, sorted_container
+
+
+def run_stats(full_sentence_list: list, sorted_container: dict):
+    """Runs all statistics"""
+
+    total_num_sentences = len(full_sentence_list)
+    print('--- Running Stats ---')
+
+    total_num_characters = 0
+    for key1, value1 in sorted_container.items():
+        total_num_characters += (int(key1) * value1['sentence_count'])
+
+    avg_characters_per_sentence = round(total_num_characters / total_num_sentences, 1)
+
+    total_word_count = 0
+    for each_item in full_sentence_list:
+        word_count = len(each_item.split(' '))
+        total_word_count += word_count
+
+    avg_word_count = round(total_word_count / total_num_sentences, 1)
+
+    print(f'total sentences: {total_num_sentences} - avg characters per sentence: {avg_characters_per_sentence}')
+    print(f'total word count: {total_word_count:,} - avg word per sentence: {avg_word_count}')
+
+    pass
+
+
+def main(args):
+
+    fname = args.fname
+
+    # Open text file.
+    with open(fname, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    content = convert_bad_characters(content)
+
+    run_grammar_checker(content)
+
+    full_sentence_list, sorted_container = create_containers(content)
 
     run_stats(full_sentence_list, sorted_container)
     pass
