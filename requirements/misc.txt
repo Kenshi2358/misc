@@ -9,6 +9,7 @@ colorama==0.4.6
 fake-useragent==1.5.1
 idna==3.7
 jmespath==1.0.1
+language-tool-python==2.8
 PySimpleGUI-4-foss==4.60.4.1
 python-dateutil==2.9.0.post0
 requests==2.32.3

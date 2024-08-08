@@ -1,19 +1,97 @@
 """
-This script takes in a screenplay script and analyzes many aspects of the text.
-1st analysis - sentence length.
-"""
+This script takes in a text file of a screenplay script and analyzes it.
+1) converts bad characters.
+2) runs grammar checker.
+3) runs general statistics.
 
+"""
+# Standard library
 import argparse
+
+# 3rd party libaries
+import language_tool_python
+
+
+def convert_bad_characters(content):
+    """Converts bad characters to good characters"""
+
+    print("Converting bad characters")
+
+    replace_dictionary = {
+        "’": "'",
+        '“': '"',
+        '”': '"'
+    }
+    translation_table = str.maketrans(replace_dictionary)
+    content = content.translate(translation_table)
+    return content
+
+
+def run_grammar_checker(content):
+
+    print("Running grammar checker")
+
+    # Initialize the tool
+    tool = language_tool_python.LanguageTool('en-US')
+
+    matches = tool.check(content)
+    ignore_rules = ['MORFOLOGIK_RULE_EN_US', 'EN_UNPAIRED_QUOTES', 'DOUBLE_PUNCTUATION']
+
+    num_matches = 0
+    for each_match in matches:
+        if each_match.ruleId not in ignore_rules:
+            num_matches += 1
+
+    print(f"Total # grammar errors: {num_matches}\n")
+
+    for each_match in matches:
+        if each_match.ruleId not in ignore_rules:
+            output = f"""
+            Error: {each_match.ruleId}
+            Message: {each_match.message}
+            Correction: {each_match.replacements}
+            Context: {each_match.context}"""
+            print(output)
+            pass
+
+
+def run_stats(full_sentence_list: list, sorted_container: dict):
+    """Runs all statistics"""
+
+    total_num_sentences = len(full_sentence_list)
+    print('--- Running Stats ---')
+
+    total_num_characters = 0
+    for key1, value1 in sorted_container.items():
+        total_num_characters += (int(key1) * value1['sentence_count'])
+
+    avg_characters_per_sentence = round(total_num_characters / total_num_sentences, 1)
+
+    total_word_count = 0
+    for each_item in full_sentence_list:
+        word_count = len(each_item.split(' '))
+        total_word_count += word_count
+
+    avg_word_count = round(total_word_count / total_num_sentences, 1)
+
+    print(f'total sentences: {total_num_sentences} - avg characters per sentence: {avg_characters_per_sentence}')
+    print(f'total word count: {total_word_count:,} - avg word per sentence: {avg_word_count}')
+
+    pass
+
 
 def main(args):
 
     fname = args.fname
-
     full_sentence_list = []
 
     # Open text file.
-    with open(fname, 'r') as f:
+    with open(fname, 'r', encoding='utf-8') as f:
         content = f.read()
+
+    content = convert_bad_characters(content)
+
+    run_grammar_checker(content)
 
     # Split the text by carriage return.
     lines = content.split('\n')
@@ -27,18 +105,17 @@ def main(args):
         # Ender checks.
         found_ender = False
         smallest_ender = 99999999
-        smallest_char = ''
+        # smallest_char = ''
 
         for each_ender in enders:
             ender_pos = each_line.find(each_ender)
             if ender_pos >= 0:
                 if ender_pos < smallest_ender:
                     smallest_ender = ender_pos
-                    smallest_char = each_ender
+                    # smallest_char = each_ender
                     found_ender = True
 
-        if found_ender == True:
-                
+        if found_ender:
             temp_sentence = temp_str + each_line[:smallest_ender+1]
             full_sentence_list.append(temp_sentence)
             temp_str = each_line[smallest_ender+1:]
@@ -46,7 +123,7 @@ def main(args):
         else:
             temp_str += each_line
 
-    # sentence length container
+    # sentence length container.
     full_container = {}
 
     for i, item in enumerate(full_sentence_list):
@@ -54,23 +131,24 @@ def main(args):
         current_item = item
         int_length = int(len(current_item))
 
-        if int_length == 6:
-            print(f"Sentence {i}: {current_item}")
-            pass
+        # if int_length == 6:
+        #     print(f"Sentence {i}: {current_item}")
+        #     pass
 
         if int_length in full_container:
-            full_container[int_length]['count'] += 1
+            full_container[int_length]['sentence_count'] += 1
             full_container[int_length]['list'].append(current_item)
 
         else:
             full_container[int_length] = {}
-            full_container[int_length]['count'] = 1
+            full_container[int_length]['sentence_count'] = 1
             full_container[int_length]['list'] = [current_item]
 
     # Sort the dictionary by key.
     sorted_container = dict(sorted(full_container.items()))
-
     # print(sorted_container)
+
+    run_stats(full_sentence_list, sorted_container)
     pass
 
 
