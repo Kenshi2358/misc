@@ -154,7 +154,7 @@ def get_screenplay_time(content, total_word_count) -> None:
     remaining_seconds = round(mod_seconds, 0)
     total_minutes = math.floor(total_seconds / 60)
 
-    print(f"time: {total_minutes:}:{remaining_seconds:.0f}")
+    print(f"time: {total_minutes:}:{remaining_seconds:02.0f}")
 
 
 def main(args):
@@ -164,6 +164,14 @@ def main(args):
     # Open text file.
     with open(fname, 'r', encoding='utf-8') as f:
         content = f.read()
+
+    # Open PDF file - not working correctly.
+    # from pypdf import PdfReader
+    # reader = PdfReader(fname)
+    # page = reader.pages[0]
+    # content = ''
+    # for each_page in reader.pages:
+    #     content += each_page.extract_text()
 
     content = convert_bad_characters(content)
 
