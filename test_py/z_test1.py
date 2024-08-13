@@ -1,12 +1,15 @@
+# Standard library
 import time
-import pyautogui
 import random
 
+# 3rd party library
+import pyautogui
+
 # Get current mouse x and y:
-#print(pyautogui.position())
+# print(pyautogui.position())
 # Get current screen resolution width and height --> 1920, 1080.
-#print(pyautogui.size())
-#pyautogui.typewrite("hello world")
+# print(pyautogui.size())
+# pyautogui.typewrite("hello world")
 
 int1 = input('Enter time in minutes:\n')
 int1 = int(int1)
@@ -21,12 +24,15 @@ upper_range = num_seconds_per_cycle + 30
 
 for i in range(total_loops):
 
-    pyautogui.moveTo(918, 428, duration = 0)
+    pyautogui.moveTo(918, 428, duration=0)
     print(f'Loading file. {num_seconds_per_cycle} sec per cycle. Progress {num_loops_completed} / {total_loops}')
 
     current_random_num = random.randint(lower_range, upper_range)
-    #print(f'Random # of seconds to sleep: {current_random_num}')
+    millisecond_random_num = random.randint(0, 1000) / 1000
 
-    time.sleep(current_random_num)
+    total_wait = current_random_num + millisecond_random_num
+
+    # print(f'# of seconds to sleep: {total_wait}')
+
+    time.sleep(total_wait)
     num_loops_completed += 1
-
