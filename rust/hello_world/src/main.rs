@@ -11,10 +11,7 @@ fn formatting_examples() {
     let text2:&str = "orange";
 
     println!("\nFormatting with brackets and comma: {} and {}", text1, text2);
-
-    let example = "like this";
-    println!("Better formatting - formatting with brackets only: {example}\n");
-
+    println!("Formatting with brackets only: {text1} and {text2}\n")
 }
 
 fn string_append_examples() {
@@ -49,6 +46,9 @@ fn string_append_examples() {
     // Declare a mutable variable, string object with text: jump.
     let mut combined_str = String::from("jump");
 
+    // Use String::from when you need a mutable, dynamically allocated string that you can modify.
+    // Use &str when you want to reference an existing string without owning it.
+
     // Different ways to concatenate strings.
     combined_str.push_str(" run");
     combined_str += " skip";
@@ -56,7 +56,7 @@ fn string_append_examples() {
     let text7 = " fly";
     combined_str += text7;
 
-    combined_str = combined_str + " hop";
+    combined_str += "hop";
 
     println!("combined_str: {combined_str}\n");
 
@@ -113,8 +113,8 @@ fn sum(int1:i32, int2:i32) -> i32 {
 
 fn empty_string_example() {
 
-    // Creating an empty string object using the new() method.
-    // Then updating its value in different ways.
+    // Create an empty string object using the new() method.
+    // Then update its value with the push_str method. Then with the "+=" operator.
     let mut text3 = String::new();
     text3.push_str("blue");
     text3 += " house";
