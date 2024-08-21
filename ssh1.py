@@ -29,7 +29,8 @@ server_container = {
     'k': 'kang',
     'b': 'blade',
 
-    'pj': 'prd-jenkins'
+    'pj': 'prd-jenkins',
+    'o': 'ozark'
 }
 
 server_str1 = f"""
@@ -53,7 +54,7 @@ server_str1 = f"""
     misc:{Fore.LIGHTRED_EX}
     a - abomination, k - kang
     b - blade
-    pj - prod jenkins{Style.RESET_ALL}
+    pj - prod jenkins, o - ozark{Style.RESET_ALL}
     """
 
 user_answer1 = input(f'Choose from the server_container:\n{server_str1}\n')
