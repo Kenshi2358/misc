@@ -1,5 +1,5 @@
 """
-This script checks for MRF files on the MRF SFTP and s3.
+This script checks for files on an SFTP and s3.
 If found, loads them onto the server.
 """
 
