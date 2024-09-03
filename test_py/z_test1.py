@@ -10,7 +10,7 @@ import pyautogui
 # To type text:
 # pyautogui.typewrite("hello world")
 
-int1 = input('Enter time in minutes:\n')
+int1 = input('Enter time:\n')
 int1 = int(int1)
 
 num_seconds = int1 * 60
