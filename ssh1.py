@@ -18,6 +18,7 @@ server_container = {
 
     'r': 'rocket',
     's': 'spiderman',
+    'wa': 'wanda',
     'ws': 'wintersoldier',
     'w': 'wolverine',
     'm': 'magneto',
@@ -42,8 +43,9 @@ server_str1 = f"""
     d - drax, f - fury
     gr - groot, ga - gamora
     i - ironman, r - rocket
-    s - spiderman, ws - wintersoldier
-    w - wolverine, m - magneto{Style.RESET_ALL}
+    s - spiderman, wa - wanda
+    ws - wintersoldier, w - wolverine,
+    m - magneto{Style.RESET_ALL}
 
     member dev:{Fore.YELLOW}
     ve - venom{Style.RESET_ALL}
