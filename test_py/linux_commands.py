@@ -11,7 +11,7 @@ Have to enter .communicate method so script waits for execution to finish.
 Otherwise, this is the best option.
 
 Options to run sql commands:
-1) psycopg2 --> Requires connecting to db_helper.py from des-utilities.
+1) psycopg --> Requires connecting to db_helper.py from des-utilities.
 
 """
 # Standard library imports
