@@ -25,6 +25,7 @@ server_container = {
 
     've': 'venom',
     'sh': 'shangchi',
+    'st': 'starlord',
 
     'a': 'abomination',
     'k': 'kang',
@@ -51,7 +52,8 @@ server_str1 = f"""
     ve - venom{Style.RESET_ALL}
 
     member prod:{Fore.MAGENTA}
-    sh - shangchi{Style.RESET_ALL}
+    sh - shangchi
+    st - starlord{Style.RESET_ALL}
 
     misc:{Fore.LIGHTRED_EX}
     a - abomination, k - kang
