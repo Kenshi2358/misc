@@ -1,6 +1,6 @@
 
-# name = 'Scott'
-# pet = 'dog'
+name = 'Scott'
+pet = 'dog'
 
 # Oldest method: %-formatting.
 print('My name is %s and I like to walk my %s.' %(name, pet))
@@ -20,3 +20,6 @@ table_name2 = 'table_name2'
 
 table_items1 = table_name1.split('.')
 table_items2 = table_name2.split('.')
+
+print(f"table_items1: {table_items1}")
+print(f"table_items2: {table_items2}")
