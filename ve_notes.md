@@ -1,15 +1,13 @@
-To create a ve, type: 
+To create a ve, type:  
 python -m venv ve_name
 
-To activate the ve, type:
-source path/activate
-In this case, on a Windows machine, it's:
-Envs/webscrape/Scripts/activate.bat
+To activate the ve, type: source "path to activate"  
+On Mac: source path/activate  
+On Windows: source Envs/webscrape/Scripts/activate.bat
 
-For Mac, it's:
-source path activate
-
-To deactivate, type:
+To deactivate, type:  
 deactivate
 
-To preview a .md file, press: Ctrl + Shift + V
+To preview a .md file:  
+On Mac, press: Cmd + Shift + V  
+On Windows, press: Ctrl + Shift + V
