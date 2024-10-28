@@ -1,9 +1,3 @@
-<h3 align="left"><strong>Markdown Notes</strong></h3>
-
-To view a markdown file in VS Code, press Shift + Cmd + V.  
-To force a carriage return on a line in a markdown file:  
-type two spaces followed by a return.
-
 <h1 align="left"><strong>Rust Notes</strong></h1>
 Rust is a statically typed language.  
 Rust is a compiled language, while Python is an interpeted language.
