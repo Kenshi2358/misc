@@ -22,4 +22,5 @@ echo "fel_select: $fel_select"
 
 echo "\ncolumn: ${column} code: ${code}"
 
-
+# Shows how to take the output and store it in a file.
+# echo "$fel_select" > file1.txt
