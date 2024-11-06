@@ -300,7 +300,8 @@ def main(args):
     # Check if parameters were passed correctly.
     if (csv_name is None) or (len(csv_name) == 0):
         if (field_check1 is None) or (value_check1 is None) or (len(field_check1) == 0) or (len(value_check1) == 0):
-            logger.error("Program must have either the csv name filled out, or both field_check1 and value_check1 answered. Ending program.")
+            print_error = "Must have either csv name filled out, or both field_check1 and value_check1 answered."
+            logger.error(print_error)
             exit(1)
         else:
 
@@ -418,54 +419,61 @@ def main(args):
                             found_header = True
                             break
 
-                    if found_header == False:
+                    if not found_header:
                         logger.info(f"Couldn't find header: {each_header} in this table. Skipping this table.")
                         all_headers_found = False
                         break
 
-                if all_headers_found == True:
-                    logger.info("All headers found in this table.")
-                    logger.info(f"table column names: {fixed_column_list}")
+                if not all_headers_found:
+                    continue
 
-                    # Query all field values for the unique column # in header_row.
-                    values_list_tuples = wh_connection.query(sql['field_values_list'].format(header_row[column_num], AsIs(combined_table)), return_data=True)
-                    field_values_list = convert_tuples(values_list_tuples)
+                logger.info("All headers found in this table.")
+                logger.info(f"table column names: {fixed_column_list}")
 
-                    num_tables_checked += 1
+                # Query all field values for the unique column # in header_row.
+                values_list_tuples = wh_connection.query(sql['field_values_list'].format(header_row[column_num], AsIs(combined_table)), return_data=True)
+                field_values_list = convert_tuples(values_list_tuples)
 
-                    # Loop through each_row in the data_list, excluding the header row.
-                    row_count = 0
-                    for each_row in data_list[1:]:
+                num_tables_checked += 1
 
-                        row_count += 1
+                # Loop through each_row in the data_list, excluding the header row.
+                row_count = 0
+                for each_row in data_list[1:]:
 
-                        # If each_row[column_num] already exists and we're doing an upsert --> continue.
-                        # If each_row[column_num] does not exist --> continue.
-                        if (each_row[column_num] in field_values_list and insert_type == 'upsert') or (each_row[column_num] not in field_values_list):
+                    row_count += 1
 
-                            if len(field_values_list) <= 10:
-                                logger.info(f"current field values: {field_values_list}")
+                    # exists & insert --> skip row.
+                    if (each_row[column_num] in field_values_list and insert_type == 'insert'):
+                        continue
 
-                            # Build upsert statement and query it.
-                            if insert_type == 'upsert':
-                                upsert_query = build_upsert_str(AsIs(combined_table), header_row=header_row, values_row=each_row, column_num=column_num)
-                                wh_connection.query(upsert_query)
+                    # All other conditions: execute code.
 
-                            # Build insert statement and query it.
-                            elif insert_type == 'insert':
-                                insert_query = build_insert_str(AsIs(combined_table), header_row=header_row, values_row=each_row)
-                                wh_connection.query(insert_query)
+                    if len(field_values_list) <= 10:
+                        logger.info(f"current field values: {field_values_list}")
 
-                            num_updates += 1
+                    # Build upsert statement and query it.
+                    if insert_type == 'upsert':
+                        upsert_query = build_upsert_str(AsIs(combined_table), header_row=header_row, values_row=each_row, column_num=column_num)
+                        wh_connection.query(upsert_query)
 
-                            # Print new field values for the primary column name.
-                            names_tuples = wh_connection.query(sql['new_value_list'].format(table_check=combined_table, field_name=header_row[column_num], field_value=each_row[column_num]), return_data=True)
-                            logger.info(f"row {row_count} -- {insert_type}ed value -- new record values: {convert_tuples(names_tuples)}")
+                    # Build insert statement and query it.
+                    elif insert_type == 'insert':
+                        insert_query = build_insert_str(AsIs(combined_table), header_row=header_row, values_row=each_row)
+                        wh_connection.query(insert_query)
 
-                            if action == 'update':
-                                wh_connection.commit()
-                            elif action == 'rollback':
-                                wh_connection.rollback()
+                    num_updates += 1
+
+                    # Print new field values for the primary column name.
+                    names_tuples = wh_connection.query(sql['new_value_list'].format(table_check=combined_table, field_name=header_row[column_num], field_value=each_row[column_num]), return_data=True)
+
+                    print_update = f"row {row_count} -- {insert_type}ed value"
+                    print_update += f" -- new record values: {convert_tuples(names_tuples)}"
+                    logger.info(print_update)
+
+                    if action == 'update':
+                        wh_connection.commit()
+                    elif action == 'rollback':
+                        wh_connection.rollback()
 
             except Exception as e:
                 wh_connection.close()
@@ -478,28 +486,27 @@ def main(args):
     logger.info("")
     if action == 'rollback':
         logger.main("Rolled back all updates.")
-    logger.main(f"{num_updates} updates done out of {num_tables_checked} tables checked across {num_servers_checked} servers.")
+    logger.main(f"{num_updates} / {num_tables_checked} tables updated across {num_servers_checked} servers.")
     logger.main("Ending main procedure ...")
 
 
-# Start Process.
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
 
     # Required parameters
-    parser.add_argument("-a", "--action", type=str, help="rollback or update", default="rollback", choices=["rollback", "update"], required=True)
-    parser.add_argument("-y", "--type", type=str, help="insert type", choices=["insert", "upsert"], required=True)
-    parser.add_argument("-t", "--table", type=str, help="enter table to view/update.", required=True)
+    parser.add_argument("-a", "--action", type=str, default="rollback", choices=["rollback", "update"], required=True)
+    parser.add_argument("-y", "--type", type=str, choices=["insert", "upsert"], required=True)
+    parser.add_argument("-t", "--table", type=str, required=True)
 
     # Optional parameters
-    parser.add_argument("-csv", "--csv_filename", type=none_or_str, help="the csv file to load.", default=None, required=False)
-    parser.add_argument("-f", "--field", type=none_or_str, help="enter field1 to view/update.", default=None, required=False)
-    parser.add_argument("-v", "--value", type=none_or_str, help="enter value1 to check/add.", default=None, required=False)
-    parser.add_argument("-c", "--client", type=none_or_str, help="The client name to update custom warehouses.", default=None, required=False)
+    parser.add_argument("-csv", "--csv_filename", type=none_or_str, default=None, required=False)
+    parser.add_argument("-f", "--field", type=none_or_str, default=None, required=False)
+    parser.add_argument("-v", "--value", type=none_or_str, default=None, required=False)
+    parser.add_argument("-c", "--client", type=none_or_str, default=None, required=False)
 
-    parser.add_argument("-e", "--encoding", type=none_or_str, help="The encoding type of the csv file.", default='utf-8', required=False)
-    parser.add_argument("-u", "--column_num", type=none_or_str, help="The column # checked for whether it already exists in the table.", default=0, required=False)
+    parser.add_argument("-e", "--encoding", type=none_or_str, default='utf-8', required=False)
+    parser.add_argument("-u", "--column_num", type=none_or_str, default=0, required=False)
 
     global_args = parser.parse_args()
 

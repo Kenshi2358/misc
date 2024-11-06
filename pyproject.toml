@@ -1,0 +1,16 @@
+[tool.ruff]
+line-length = 120
+
+# To select a rule code system, enter a letter for the source of the rule.
+# E is for pycodestyle, F for pyflakes, W for pycodestyle warnings,
+# C for McCabe complexity, B for flake8-bugbear.
+#lint.select = ["E", "F", "W", "C", "B"]
+lint.select = ["E"]
+
+# Example of ignoring a specific error type.
+# lint.ignore = ["F401"]
+
+lint.ignore = []
+
+# E303 - error code for too many blank lines
+# lint.ignore = ["E303"]
