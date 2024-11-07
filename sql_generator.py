@@ -13,67 +13,69 @@ import PySimpleGUI as GUI
 
 GUI.theme('dark grey 10')
 
+cal='Calibri'
+
 # Primary column layout.
 first_column_layout = [
 
-[GUI.Text(text='Extids:', font=('Calibri', 16), justification='center', size=(40, 1))],
+[GUI.Text(text='Extids:', font=(cal, 16), justification='center', size=(40, 1))],
 
-[GUI.Text(text="PID column name:", font='Calibri'), GUI.Input(key='pid', font='Calibri', size=(22, 4), default_text='prov_id')],
-[GUI.Text(text="NPI column name:", font='Calibri'), GUI.Input(key='npi', font='Calibri', size=(22, 4), default_text='npi_id')],
-[GUI.Text(text="TIN column name:", font='Calibri'), GUI.Input(key='tin', font='Calibri', size=(22, 4), default_text='tin_id'),
-GUI.Button(button_text='Clear', font=('Calibri'))],
+[GUI.Text(text="PID column name:", font=cal), GUI.Input(key='pid', font=cal, size=(22, 4), default_text='prov_id')],
+[GUI.Text(text="NPI column name:", font=cal), GUI.Input(key='npi', font=cal, size=(22, 4), default_text='npi_id')],
+[GUI.Text(text="TIN column name:", font=cal), GUI.Input(key='tin', font=cal, size=(22, 4), default_text='tin_id'),
+GUI.Button(button_text='Clear', font=(cal))],
 
-[GUI.Text(text="   FACIL E extids:", font='Calibri'),
-GUI.Input(key='fe_extid', font='Calibri', default_text='PID', size=(22, 4)),
-GUI.Button(button_text='FACIL E', font='Calibri')],
+[GUI.Text(text="   FACIL E extids:", font=cal),
+GUI.Input(key='fe_extid', font=cal, default_text='PID', size=(22, 4)),
+GUI.Button(button_text='FACIL E', font=cal)],
 
-[GUI.Text(text=" FACIL EL extids:", font='Calibri'),
-GUI.Input(key='fel_extid', font='Calibri', default_text='PRS,NPI,TIN', size=(22, 4)),
-GUI.Button(button_text='FACIL EL', font='Calibri')],
+[GUI.Text(text=" FACIL EL extids:", font=cal),
+GUI.Input(key='fel_extid', font=cal, default_text='PRS,NPI,TIN', size=(22, 4)),
+GUI.Button(button_text='FACIL EL', font=cal)],
 
-[GUI.Text(text="FACIL ELI extids:", font='Calibri'),
-GUI.Input(key='feli_extid', font='Calibri', size=(22, 4)),
-GUI.Button(button_text='FACIL ELI', font='Calibri')],
+[GUI.Text(text="FACIL ELI extids:", font=cal),
+GUI.Input(key='feli_extid', font=cal, size=(22, 4)),
+GUI.Button(button_text='FACIL ELI', font=cal)],
 
 
-[GUI.Text(text="     PRO E extids:", font='Calibri'),
-GUI.Input(key='pe_extid', font='Calibri', default_text='PID,NPI', size=(22, 4)),
-GUI.Button(button_text='PRO E', font='Calibri')],
+[GUI.Text(text="     PRO E extids:", font=cal),
+GUI.Input(key='pe_extid', font=cal, default_text='PID,NPI', size=(22, 4)),
+GUI.Button(button_text='PRO E', font=cal)],
 
-[GUI.Text(text="   PRO EL extids:", font='Calibri'),
-GUI.Input(key='pel_extid', font='Calibri', default_text='PRS,TIN', size=(22, 4)),
-GUI.Button(button_text='PRO EL', font='Calibri')],
+[GUI.Text(text="   PRO EL extids:", font=cal),
+GUI.Input(key='pel_extid', font=cal, default_text='PRS,TIN', size=(22, 4)),
+GUI.Button(button_text='PRO EL', font=cal)],
 
-[GUI.Text(text="  PRO ELI extids:", font='Calibri'),
-GUI.Input(key='peli_extid', font='Calibri', size=(22, 4)),
-GUI.Button(button_text='PRO ELI', font='Calibri')],
+[GUI.Text(text="  PRO ELI extids:", font=cal),
+GUI.Input(key='peli_extid', font=cal, size=(22, 4)),
+GUI.Button(button_text='PRO ELI', font=cal)],
 
-[GUI.Text(text='Datums:', font=('Calibri', 16), justification='center', size=(40, 1))],
+[GUI.Text(text='Datums:', font=(cal, 16), justification='center', size=(40, 1))],
 
-[GUI.Text(text="ANP column name:", font='Calibri'), GUI.Input(key='anp', font='Calibri', size=(22, 4), default_text='ANP_column')],
-[GUI.Text(text="PCP column name:", font='Calibri'), GUI.Input(key='pcp', font='Calibri', size=(22, 4), default_text='PCP_column')],
-[GUI.Text(text="LOCEMAIL column:", font='Calibri'), GUI.Input(key='email', font='Calibri', size=(22, 4), default_text='email_column')],
-[GUI.Text(text="  LOCURL column:", font='Calibri'), GUI.Input(key='url', font='Calibri', size=(22, 4), default_text='url_column')],
+[GUI.Text(text="ANP column name:", font=cal), GUI.Input(key='anp', font=cal, size=(22, 4), default_text='ANP_column')],
+[GUI.Text(text="PCP column name:", font=cal), GUI.Input(key='pcp', font=cal, size=(22, 4), default_text='PCP_column')],
+[GUI.Text(text="LOCEMAIL column:", font=cal), GUI.Input(key='email', font=cal, size=(22, 4), default_text='email_column')],
+[GUI.Text(text="  LOCURL column:", font=cal), GUI.Input(key='url', font=cal, size=(22, 4), default_text='url_column')],
 
-[GUI.Text(text="   FACIL E datums:", font='Calibri'), GUI.Input(key='fe_datum', font='Calibri', size=(22, 4), default_text='')],
-[GUI.Text(text=" FACIL EL datums:", font='Calibri'), GUI.Input(key='fel_datum', font='Calibri', size=(22, 4), default_text='')],
-[GUI.Text(text="FACIL ELI datums:", font='Calibri'), GUI.Input(key='feli_datum', font='Calibri', size=(22, 4), default_text='')],
+[GUI.Text(text="   FACIL E datums:", font=cal), GUI.Input(key='fe_datum', font=cal, size=(22, 4), default_text='')],
+[GUI.Text(text=" FACIL EL datums:", font=cal), GUI.Input(key='fel_datum', font=cal, size=(22, 4), default_text='')],
+[GUI.Text(text="FACIL ELI datums:", font=cal), GUI.Input(key='feli_datum', font=cal, size=(22, 4), default_text='')],
 
-[GUI.Text(text="     PRO E datums:", font='Calibri'), GUI.Input(key='pe_datum', font='Calibri', size=(22, 4), default_text='')],
-[GUI.Text(text="   PRO EL datums:", font='Calibri'), GUI.Input(key='pel_datum', font='Calibri', size=(22, 4), default_text='')],
+[GUI.Text(text="     PRO E datums:", font=cal), GUI.Input(key='pe_datum', font=cal, size=(22, 4), default_text='')],
+[GUI.Text(text="   PRO EL datums:", font=cal), GUI.Input(key='pel_datum', font=cal, size=(22, 4), default_text='')],
 [GUI.Text(
-    text="  PRO ELI datums:", font='Calibri'),
-    GUI.Input(key='peli_datum', font='Calibri', size=(22, 4), default_text='ANP, PCP')
+    text="  PRO ELI datums:", font=cal),
+    GUI.Input(key='peli_datum', font=cal, size=(22, 4), default_text='ANP, PCP')
 ],
 
-[GUI.Button(button_text='Exit', font='Calibri')]]
+[GUI.Button(button_text='Exit', font=cal)]]
 
 
 # Secondary column layout for output.
 second_column_layout = [
-    [GUI.Text(text='Output:', font=('Calibri', 18), justification='center', size=(40, 2))],
+    [GUI.Text(text='Output:', font=(cal, 18), justification='center', size=(40, 2))],
     [GUI.Multiline(
-        size=(50, 20), font=('Calibri', 14), key='-multi-line1-',
+        size=(50, 20), font=(cal, 14), key='-multi-line1-',
         do_not_clear=False, text_color='turquoise3')
     ]
 ]
