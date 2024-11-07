@@ -391,7 +391,9 @@ def main(args):
             logger.main(f"Connected to database: {warehouse[1]}")
 
             # Check that the schema and table exists.
-            total_tables = wh_connection.query(sql['warehouse_tables'].format(schema_check=my_schema, table_check=my_table), return_data=True)
+            total_tables = wh_connection.query(sql['warehouse_tables'].format(
+                schema_check=my_schema, table_check=my_table), return_data=True
+            )
             logger.debug(total_tables)
 
             num_tables = len(total_tables)
@@ -431,7 +433,11 @@ def main(args):
                 logger.info(f"table column names: {fixed_column_list}")
 
                 # Query all field values for the unique column # in header_row.
-                values_list_tuples = wh_connection.query(sql['field_values_list'].format(header_row[column_num], AsIs(combined_table)), return_data=True)
+                values_list_tuples = wh_connection.query(sql['field_values_list'].format(
+                    header_row[column_num],
+                    AsIs(combined_table)),
+                    return_data=True
+                )
                 field_values_list = convert_tuples(values_list_tuples)
 
                 num_tables_checked += 1
@@ -453,18 +459,28 @@ def main(args):
 
                     # Build upsert statement and query it.
                     if insert_type == 'upsert':
-                        upsert_query = build_upsert_str(AsIs(combined_table), header_row=header_row, values_row=each_row, column_num=column_num)
+                        upsert_query = build_upsert_str(
+                            AsIs(combined_table), header_row=header_row,
+                            values_row=each_row, column_num=column_num
+                        )
                         wh_connection.query(upsert_query)
 
                     # Build insert statement and query it.
                     elif insert_type == 'insert':
-                        insert_query = build_insert_str(AsIs(combined_table), header_row=header_row, values_row=each_row)
+                        insert_query = build_insert_str(
+                            AsIs(combined_table), header_row=header_row, values_row=each_row
+                        )
                         wh_connection.query(insert_query)
 
                     num_updates += 1
 
                     # Print new field values for the primary column name.
-                    names_tuples = wh_connection.query(sql['new_value_list'].format(table_check=combined_table, field_name=header_row[column_num], field_value=each_row[column_num]), return_data=True)
+                    names_tuples = wh_connection.query(sql['new_value_list'].format(
+                        table_check=combined_table,
+                        field_name=header_row[column_num],
+                        field_value=each_row[column_num]),
+                        return_data=True
+                    )
 
                     print_update = f"row {row_count} -- {insert_type}ed value"
                     print_update += f" -- new record values: {convert_tuples(names_tuples)}"

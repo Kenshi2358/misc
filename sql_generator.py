@@ -61,7 +61,10 @@ GUI.Button(button_text='PRO ELI', font='Calibri')],
 
 [GUI.Text(text="     PRO E datums:", font='Calibri'), GUI.Input(key='pe_datum', font='Calibri', size=(22, 4), default_text='')],
 [GUI.Text(text="   PRO EL datums:", font='Calibri'), GUI.Input(key='pel_datum', font='Calibri', size=(22, 4), default_text='')],
-[GUI.Text(text="  PRO ELI datums:", font='Calibri'), GUI.Input(key='peli_datum', font='Calibri', size=(22, 4), default_text='ANP, PCP')],
+[GUI.Text(
+    text="  PRO ELI datums:", font='Calibri'),
+    GUI.Input(key='peli_datum', font='Calibri', size=(22, 4), default_text='ANP, PCP')
+],
 
 [GUI.Button(button_text='Exit', font='Calibri')]]
 
@@ -69,7 +72,10 @@ GUI.Button(button_text='PRO ELI', font='Calibri')],
 # Secondary column layout for output.
 second_column_layout = [
     [GUI.Text(text='Output:', font=('Calibri', 18), justification='center', size=(40, 2))],
-    [GUI.Multiline(size=(50, 20), font=('Calibri', 14), key='-multi-line1-', do_not_clear=False, text_color='turquoise3')]
+    [GUI.Multiline(
+        size=(50, 20), font=('Calibri', 14), key='-multi-line1-',
+        do_not_clear=False, text_color='turquoise3')
+    ]
 ]
 
 full_layout = [

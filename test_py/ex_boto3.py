@@ -1,7 +1,7 @@
 """
 Works:
 python3 ex_boto3.py --file "dummy_file1.txt" --s3_bucket "mdx-des" --s3_file "dummy_file1.txt" --task "u"
-python3 ex_boto3.py --file "dummy_file1.txt" --s3_bucket "mdx-des" --s3_file "folder1/folder2/dummy_file1.txt" --task "u"
+python3 ex_boto3.py --file "dummy_file1.txt" --s3_bucket "mdx-des"--s3_file "folder1/dummy_file1.txt" --task "u"
 """
 
 import boto3
