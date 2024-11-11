@@ -23,9 +23,20 @@ def filewrite(encoding='utf-8'):
     logging.info(f'Encoding type: {encoding}')
 
 
-if __name__ == '__main__':
-
+def parse_arguments():
     parser = argparse.ArgumentParser()
+
     parser.add_argument("-e", "--encoding", type=str, help="File encoding", required=False)
-    args = parser.parse_args()
+    parser.add_argument('-r', "--recipients", type=str, help="email recipients")
+    parser.add_argument('-s', "--server", type=str, help="server name")
+    parser.add_argument('-d', "--database", type=str, help="database name")
+    return parser.parse_args()
+
+
+def main():
+    args = parse_arguments()
     filewrite(encoding=args.encoding)
+
+
+if __name__ == '__main__':
+    main()
