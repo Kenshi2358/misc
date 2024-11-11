@@ -52,7 +52,7 @@
     "python.defaultInterpreterPath": "/Users/shahnert/Desktop/Envs/3.12/bin/python",
 
     "python.autoComplete.extraPaths": [
-        "/Users/shahnert/Desktop/Envs/3.12/lib/python3.12/site-packages",
+        "/Users/shahnert/Desktop/Envs/3.12/lib/python3.12/site-packages"
         
     ],
 
