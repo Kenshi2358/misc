@@ -52,8 +52,8 @@
     "python.defaultInterpreterPath": "/Users/shahnert/Desktop/Envs/3.12/bin/python",
 
     "python.autoComplete.extraPaths": [
-        "/Users/shahnert/Desktop/Envs/3.12/lib/python3.12/site-packages"
-        
+        "/Users/shahnert/Desktop/Envs/3.12/lib/python3.12/site-packages",
+        "/Users/shahnert/.pyenv/versions/3.8.11/lib/python3.8"
     ],
 
     // This disables the warnings and errors of Pylance.
