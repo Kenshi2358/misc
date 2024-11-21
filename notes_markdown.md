@@ -1,3 +1,7 @@
+To preview a .md file:  
+On Mac, press: Cmd + Shift + V  
+On Windows, press: Ctrl + Shift + V
+
 To create a heading, type: `# H1`
 `## H2`
 `### H3`

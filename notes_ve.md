@@ -1,7 +1,3 @@
-To preview a .md file:  
-On Mac, press: Cmd + Shift + V  
-On Windows, press: Ctrl + Shift + V
-
 To create a ve, type: `python -m venv ve_name`
 
 To activate a ve, type: `source "path to activate"`  
