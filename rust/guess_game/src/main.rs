@@ -45,13 +45,26 @@ fn main() {
         println!("Enter your guess:");
         let mut user_guess1 = String::new();
 
+        // Read input.
         io::stdin()
             .read_line(&mut user_guess1)
             .expect("Failed to read line");
 
-        let user_guess1: u32 = match user_guess1.trim().parse() {
+        // Remove whitespace.
+        let input = user_guess1.trim();
+        
+        // Convert input to an unsigned 32-bit integer (u32).
+        let parsed_result = input.parse::<u32>();
+
+        // Matches the result of the parsed attempt.
+        // If successful, assigns parsed_result to user_guess1.
+        // If unsuccessful, it prints an error message and continues the loop.
+        let user_guess1: u32 = match parsed_result {
             Ok(num) => num,
-            Err(_) => continue,
+            Err(e) => {
+                eprintln!("Please enter a valid number. Error: {}", e);
+                continue;
+            }
         };
 
         println!("You guessed: {user_guess1}");
