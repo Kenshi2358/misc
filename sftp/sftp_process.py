@@ -12,7 +12,7 @@ import subprocess
 import sys
 
 # 3rd party imports
-import psycopg2
+import psycopg
 
 # Add main directory to sys.
 current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
@@ -84,7 +84,7 @@ def raw_to_db(args, file_list) -> None:
     table_name = args.input_table_name
 
     # Establish connection.
-    conn = psycopg2.connect(host=args.host, dbname=args.db, user=args.user)
+    conn = psycopg.connect(host=args.host, dbname=args.db, user=args.user)
     cursor = conn.cursor()
     logger.info(f"Connection established to {args.db} on {args.host}")
 
