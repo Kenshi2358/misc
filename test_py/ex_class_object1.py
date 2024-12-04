@@ -11,6 +11,7 @@
 
 class coffee_object:
     def __init__(self, type):
+        self.type = type # property
 
         if type == 'espresso':
 
@@ -31,8 +32,8 @@ class coffee_object:
 coffee1 = coffee_object('espresso')
 coffee2 = coffee_object('latte')
 
-print(f'coffee1 - amount: {coffee1.amount} cost: ${coffee1.cost:.2f} color: {coffee1.color}')
-print(f'coffee2 - amount: {coffee2.amount} cost: ${coffee2.cost:.2f} color: {coffee2.color}')
+print(f'\ncoffee1: {coffee1.type} - amount: {coffee1.amount} cost: ${coffee1.cost:.2f} color: {coffee1.color}')
+print(f'coffee2: {coffee2.type} - amount: {coffee2.amount} cost: ${coffee2.cost:.2f} color: {coffee2.color}\n')
 
 coffee1_dictionary = {
         "ingredients": {
