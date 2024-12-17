@@ -1,3 +1,8 @@
+"""
+To run this script. Open a new a terminal and navigate to this path.
+Then run python app.py. Then navigate to the provided URL.
+"""
+
 import os
 from flask import Flask, render_template
 
