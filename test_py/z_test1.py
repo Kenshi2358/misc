@@ -67,7 +67,7 @@ for i in range(total_loops):
     total_wait = current_random_num + millisecond_random_num
     delta_wait = total_wait - 1
 
-    random_tab_num = random.randint(1, 4)
+    random_tab_num = random.randint(1, 6)
     toggle_num = str(random_tab_num)
 
     ctrl_down_lower_int = round(ctrl_down_lower * 10)
