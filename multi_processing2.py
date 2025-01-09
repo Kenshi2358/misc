@@ -3,14 +3,15 @@ import logging.handlers
 import multiprocessing
 import time
 
-def worker_process(queue, process_name):
-    logger = logging.getLogger(process_name)
+def worker_process(parent_queue, process_id):
+    # This is an example of a function called that takes in the parent_queue and the process_id.
+    logger = logging.getLogger(process_id)
     logger.setLevel(logging.INFO)
-    handler = logging.handlers.QueueHandler(queue)
+    handler = logging.handlers.QueueHandler(parent_queue)
     logger.addHandler(handler)
-    
+
     for i in range(5):
-        logger.info(f"{process_name} - logging {i}")
+        logger.info(f"{process_id} - logging {i}")
         time.sleep(1)
 
 def setup_logging(queue):
@@ -28,11 +29,11 @@ def setup_logging(queue):
     logging.getLogger().addHandler(handler)
 
 if __name__ == "__main__":
-    log_queue = multiprocessing.Queue()
-    setup_logging(log_queue)
+    parent_queue = multiprocessing.Queue()
+    setup_logging(parent_queue)
     
     num_process = 3
-    processes = [multiprocessing.Process(target=worker_process, args=(log_queue, f"p{i}")) for i in range(1, num_process + 1)]
+    processes = [multiprocessing.Process(target=worker_process, args=(parent_queue, f"p{i}")) for i in range(1, num_process + 1)]
     
     for p in processes:
         p.start()
