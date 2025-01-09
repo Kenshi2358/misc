@@ -12,10 +12,10 @@ def print_square(num):
     print(f"Square: {num * num}") 
 
 
-def print_pokemon(names):
+def print_pokemon(names, process_name):
 
     for each_name in names:
-        print(each_name)
+        print(f"{process_name} - {each_name}")
 
 # # with Pool(2) as p:
 # #     print(p.map(print_pokemon, names1))
@@ -57,8 +57,8 @@ if __name__ == "__main__":
     for i, each_name in enumerate(names_list, start=1):
         
         process_name = f"p{i}"
-        p = Process(name=process_name, target=print_pokemon, args=(each_name,))
-        print(f"i: {i}")
+        p = Process(name=process_name, target=print_pokemon, args=(each_name, process_name))
+        # print(f"i: {i}")
         p.start()
         process_name_list.append(p)
 
