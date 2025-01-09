@@ -5,13 +5,15 @@ import time
 
 def worker_process(parent_queue, process_id):
     # This is an example of a function called that takes in the parent_queue and the process_id.
-    logger = logging.getLogger(process_id)
-    logger.setLevel(logging.INFO)
-    handler = logging.handlers.QueueHandler(parent_queue)
-    logger.addHandler(handler)
+    child_logger = logging.getLogger(process_id)
+    child_logger.setLevel(logging.INFO)
+
+    if not child_logger.handlers:
+        handler = logging.handlers.QueueHandler(parent_queue)
+        child_logger.addHandler(handler)
 
     for i in range(5):
-        logger.info(f"{process_id} - logging {i}")
+        child_logger.info(f"{process_id} - logging {i}")
         time.sleep(1)
 
 def setup_logging(queue):
