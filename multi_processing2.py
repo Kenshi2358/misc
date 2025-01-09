@@ -43,4 +43,4 @@ if __name__ == "__main__":
     for p in processes:
         p.join()
     
-    logging.info("Main process logging complete.")
+    logging.info("Done running.")
