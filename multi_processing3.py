@@ -11,9 +11,14 @@ import math
 
 
 def worker_process(parent_queue, process_id):
-    # This is an example of a function called that takes in the parent_queue and the process_id.
+    
+    # Setup a child logger.
     child_logger = logging.getLogger(process_id)
     child_logger.setLevel(logging.INFO)
+
+    # handler = logging.handlers.QueueHandler(parent_queue)
+    # child_logger.addHandler(handler)
+    # child_logger.propagate = False
 
     if not child_logger.handlers:
         handler = logging.handlers.QueueHandler(parent_queue)
@@ -64,8 +69,10 @@ def timing(f):
 @timing
 def main(args):
 
+    # Create a custom parent queue to listen to child processes.
     parent_queue = multiprocessing.Queue()
 
+    # Create a custom logger, including listening to the queue.
     handler = logging.StreamHandler()
 
     formatter = logging.Formatter(
@@ -89,6 +96,7 @@ def main(args):
             args=(parent_queue, process_id),
         )
 
+    logging.info("Parent logger - Starting monitor")
     # start monitored jobs
     monitor.start()
 
@@ -112,7 +120,7 @@ def main(args):
     monitor.terminate_all()
     del monitor
 
-    logging.info("Done running.")
+    logging.info("Parent logger - ending monitor")
 
     # Stop the Queue Listener.
     listener.stop()
