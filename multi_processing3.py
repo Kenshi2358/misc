@@ -7,6 +7,7 @@ from time import sleep, time
 from process_monitor import MPMonitor, MPProcessFailure
 from functools import wraps
 import argparse
+import math
 
 
 def worker_process(parent_queue, process_id):
@@ -21,21 +22,6 @@ def worker_process(parent_queue, process_id):
     for i in range(5):
         child_logger.info(f"{process_id} - logging {i}")
         sleep(1)
-
-
-# def setup_logging(queue):
-#     handler = logging.StreamHandler()
-
-#     formatter = logging.Formatter(
-#         '%(asctime)s %(levelname)-8s %(message)s',
-#         datefmt="%Y-%m-%d %H:%M:%S")
-#     handler.setFormatter(formatter)
-
-#     listener = logging.handlers.QueueListener(queue, handler)
-#     listener.start()
-
-#     logging.getLogger().setLevel(logging.INFO)
-#     logging.getLogger().addHandler(handler)
 
 
 def convert_time(total_seconds: float) -> str:
@@ -74,11 +60,11 @@ def timing(f):
 
     return wrap
 
+
 @timing
 def main(args):
-    
+
     parent_queue = multiprocessing.Queue()
-    # setup_logging(parent_queue)
 
     handler = logging.StreamHandler()
 
@@ -102,15 +88,17 @@ def main(args):
             target=worker_process,
             args=(parent_queue, process_id),
         )
+
+    # start monitored jobs
     monitor.start()
 
     # while processes are alive, monitor jobs
     while any(proc.is_alive() for proc in monitor.procs):
         monitor.monitor_processes()
         sleep(2)
+
     # check for failures
     failure = any(proc.failed for proc in monitor.procs)
-
     if failure:
         output = "\n"
         for proc in monitor.procs:
@@ -118,7 +106,10 @@ def main(args):
                 output += f"{proc.name} failed: {proc.exception}\n"
 
         logging.error(output)
-        raise MPProcessFailure(f"Failure during load process.")
+        raise MPProcessFailure("Failure during load process.")
+
+    # end monitored jobs
+    monitor.terminate_all()
     del monitor
 
     logging.info("Done running.")
