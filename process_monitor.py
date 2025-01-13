@@ -100,7 +100,7 @@ class MPMonitor:
                 proc.join()
 
     def __del__(self):
-        self.terminate_all()
+        self.monitor_processes()
 
 
 def worker_function(i) -> None:
