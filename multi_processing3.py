@@ -10,25 +10,6 @@ import argparse
 import math
 
 
-def worker_process(parent_queue, process_id):
-    
-    # Setup a child logger.
-    child_logger = logging.getLogger(process_id)
-    child_logger.setLevel(logging.INFO)
-
-    # handler = logging.handlers.QueueHandler(parent_queue)
-    # child_logger.addHandler(handler)
-    # child_logger.propagate = False
-
-    if not child_logger.handlers:
-        handler = logging.handlers.QueueHandler(parent_queue)
-        child_logger.addHandler(handler)
-
-    for i in range(5):
-        child_logger.info(f"{process_id} - logging {i}")
-        sleep(1)
-
-
 def convert_time(total_seconds: float) -> str:
 
     output_str = ''
@@ -64,6 +45,26 @@ def timing(f):
         return result
 
     return wrap
+
+
+@timing
+def worker_process(parent_queue, process_id):
+    
+    # Setup a child logger.
+    child_logger = logging.getLogger(process_id)
+    child_logger.setLevel(logging.INFO)
+
+    # handler = logging.handlers.QueueHandler(parent_queue)
+    # child_logger.addHandler(handler)
+    # child_logger.propagate = False
+
+    if not child_logger.handlers:
+        handler = logging.handlers.QueueHandler(parent_queue)
+        child_logger.addHandler(handler)
+
+    for i in range(5):
+        child_logger.info(f"{process_id} - logging {i}")
+        sleep(1)
 
 
 @timing
@@ -117,13 +118,16 @@ def main(args):
         raise MPProcessFailure("Failure during load process.")
 
     # end monitored jobs
-    monitor.terminate_all()
+    # monitor.terminate_all()
     del monitor
 
     logging.info("Parent logger - ending monitor")
 
     # Stop the Queue Listener.
     listener.stop()
+
+    # shutdown the queue correctly
+    parent_queue.put(None)
 
 
 if __name__ == "__main__":
