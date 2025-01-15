@@ -14,10 +14,10 @@ def convert_bytes(bytes, units=['bytes', 'KB', 'MB', 'GB', 'TB']):
 
 number_to_check = 300_000
 my_list = [f"{i}I'm a dog. My name is Logan. Bark bark. I love to eat and go for runs." for i in range(number_to_check)]
-total_size_1 = asizeof.asizeof(my_list)
 
+total_size_1 = asizeof.asizeof(my_list)
 bytes_str_1 = convert_bytes(total_size_1)
-print(f"Total memory size: {total_size_1:,} bytes, which is {bytes_str_1}")
+print(f"Total memory size (per pympler): {total_size_1:,} bytes, which is {bytes_str_1}")
 
 total_size_2 = sys.getsizeof(my_list)
 bytes_str_2 = convert_bytes(total_size_2)
