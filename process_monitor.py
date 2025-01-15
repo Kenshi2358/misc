@@ -99,8 +99,8 @@ class MPMonitor:
                 proc.terminate()
                 proc.join()
 
-    def __del__(self):
-        self.monitor_processes()
+    # def __del__(self):
+    #     self.monitor_processes()
 
 
 def worker_function(i) -> None:

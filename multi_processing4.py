@@ -1,12 +1,12 @@
 # Example of logging from multiple processes in a process-safe manner.
 
-from random import random
+import random
 from multiprocessing import current_process
 from multiprocessing import Process
 from multiprocessing import Queue
 
 import logging
-from logging.handlers import QueueHandler
+from logging.handlers import QueueHandler, QueueListener
 
 from process_monitor import MPMonitor, MPProcessFailure
 from functools import wraps
@@ -52,9 +52,21 @@ def timing(f):
     return wrap
 
 
-def logger_process(queue):
+handler = logging.StreamHandler()
+formatter = logging.Formatter(
+    '%(asctime)s %(levelname)-8s %(message)s',
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
+handler.setFormatter(formatter)
+logging.getLogger().setLevel(logging.INFO)
+logging.getLogger().addHandler(handler)
 
-    logger = logging.getLogger('app')
+# task to be executed in child processes
+@timing
+def task():
+    # create a logger
+    logger = logging.getLogger('app500')
+    logger.setLevel(logging.INFO)
 
     handler = logging.StreamHandler()
     formatter = logging.Formatter(
@@ -62,27 +74,8 @@ def logger_process(queue):
         datefmt="%Y-%m-%d %H:%M:%S"
     )
     handler.setFormatter(formatter)
-
     logger.addHandler(handler)
-    logger.setLevel(logging.INFO)
-
-    while True:
-        ## Consume a log message. If none arrive, end loop. Otherwise, log the message.
-        message = queue.get()
-        if message is None:
-            break
-        logger.handle(message)
-
-
-# task to be executed in child processes
-@timing
-def task(queue):
-    # create a logger
-    logger = logging.getLogger('app500')
-    logger.setLevel(logging.INFO)
-
-    # add a handler that uses the shared queue
-    logger.addHandler(QueueHandler(queue))
+    logger.propagate = False
 
     # get the current process
     process = current_process()
@@ -91,7 +84,7 @@ def task(queue):
     # simulate doing work
     for i in range(5):
         logger.info(f'Child {process.name} step {i}')
-        sleep(random())
+        sleep(random.randint(1, 3))
 
     logger.info(f'Child {process.name} - finished')
 
@@ -99,20 +92,7 @@ def task(queue):
 @timing
 def main(args):
 
-    # create the shared queue
-    queue = Queue()
-    # create a logger
-    logger = logging.getLogger('app')
-    # add a handler that uses the shared queue
-    logger.addHandler(QueueHandler(queue))
-    # set logger level.
-    logger.setLevel(logging.INFO)
-
-    # start the logger process
-    logger_p = Process(target=logger_process, args=(queue,))
-    logger_p.start()
-
-    logger.info('Main process - started')
+    logging.info('Main process - started')
 
     monitor = MPMonitor()
 
@@ -121,7 +101,7 @@ def main(args):
         process_id = f"p{i}"
         monitor.add_proc(
             target=task,
-            args=(queue,),
+            args=(),
         )
 
     monitor.start()
@@ -137,23 +117,14 @@ def main(args):
             if proc.failed:
                 output += f"{proc.name} failed: {proc.exception}\n"
 
-        logger.error(output)
+        logging.error(output)
         raise MPProcessFailure("Failure during load process.")
 
-    del monitor
+    for proc in monitor.procs:
+        proc.join()
 
-    # # configure child processes
-    # processes = [Process(target=task, args=(queue,)) for i in range(5)]
-    # # start child processes
-    # for process in processes:
-    #     process.start()
-    # # wait for child processes to finish
-    # for process in processes:
-    #     process.join()
-
-    logger.info('Main process - finished')
-    # shutdown the queue correctly
-    queue.put(None)
+    logging.info('Main process - finished')
+    monitor.monitor_processes(silent=False)
 
 
 if __name__ == "__main__":
