@@ -1,4 +1,6 @@
+import sys
 from pympler import asizeof
+
 
 def convert_bytes(bytes, units=['bytes', 'KB', 'MB', 'GB', 'TB']):
     """
@@ -16,3 +18,7 @@ total_size = asizeof.asizeof(my_list)
 
 bytes_str = convert_bytes(total_size)
 print(f"Total memory size: {total_size:,} bytes, which is {bytes_str}")
+
+total_size_2 = sys.getsizeof(my_list)
+bytes_str_2 = convert_bytes(total_size_2)
+print(f"Total memory size (per sys): {total_size_2:,} bytes, which is {bytes_str_2}")
