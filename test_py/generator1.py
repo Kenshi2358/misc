@@ -1,6 +1,14 @@
 """
 Example of a generator function capturing an infinite data stream.
 This one is the fibonacci sequence.
+
+Generators return an iterator object (or generator object that supports the iterator protocol).
+Instead of using a return to send back a single value,
+generator functions use yield to produce a series of results over time.
+This allows the function to generate values and pause it's execution after each yield,
+maintaining it's state between iterations.
+
+yield provides a sequence of values over time.
 """
 
 def fib():
