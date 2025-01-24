@@ -1,0 +1,68 @@
+{
+    "security.workspace.trust.untrustedFiles": "open",
+    "workbench.iconTheme": "vscode-great-icons",
+    "editor.fontFamily": "Menlo, Consolas, DejaVu Sans Mono, monospace",
+    "editor.wordWrap": "on",
+    "editor.fontSize": 13,
+    "window.zoomLevel": 1,
+
+    "indentRainbow.colors": [
+        "rgba(255,255,64,0.20)",
+        "rgba(127,255,127,0.20)",
+        "rgba(255,127,255,0.20)",
+        "rgba(79,236,236,0.20)"
+    ],
+    "editor.stickyScroll.scrollWithEditor": false,
+    "workbench.tree.enableStickyScroll": false,
+    "editor.stickyScroll.enabled": false,
+    "workbench.tree.stickyScrollMaxItemCount": 1,
+
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.lightbulb.enabled": "off",
+
+    "indentRainbow.indicatorStyle": "light",
+    "editor.showFoldingControls": "always",
+    "notebook.showFoldingControls": "always",
+    "interactiveWindow.collapseCellInputCode": "always",
+    "terminal.integrated.automationProfile.osx": null,
+    "terminal.integrated.defaultProfile.osx": "bash",
+    "git.openRepositoryInParentFolders": "never",
+    "php.validate.executablePath": "",
+    "explorer.confirmDragAndDrop": false,
+    "workbench.colorTheme": "Default Dark+",
+
+    // This disables all of Pylance. Don't want this.
+    //"python.languageServer": "None"
+
+    // Show options in editor when writing code.
+    // "python.languageServer": "Pylance",
+    //"python.analysis.typeCheckingMode": "basic",
+    "editor.suggest.showMethods": true,
+    "editor.suggest.showFunctions": true,
+    "editor.suggest.showVariables": true,
+    "editor.suggest.showKeywords": true,
+    "editor.suggest.showConstructors": true,
+    // Custom virtual environment to run.
+    "python.defaultInterpreterPath": "/Users/some_name/Desktop/Envs/3.12/bin/python",
+
+    "python.autoComplete.extraPaths": [
+        "/Users/some_name/Desktop/Envs/3.12/lib/python3.12/site-packages",
+        "/Users/some_name/.pyenv/versions/3.8.11/lib/python3.8"
+    ],
+
+    // This disables the warnings and errors of Pylance.
+    "python.analysis.ignore": [
+        "*"
+    ],
+    "python.analysis.extraPaths": [
+        "/Users/some_name/Desktop/Envs/3.12/lib/python3.12/site-packages"
+    ],
+
+    "files.associations": {
+        "*.html": "jinja-html",
+        "*.conf": "shellscript"
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "lldb.suppressUpdateNotifications": true
+}
