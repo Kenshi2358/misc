@@ -13,6 +13,12 @@ declare -a indexed_array=(
     "Step3" "Step4" "Step5"
 )
 
+select1="First step"
+select2="Second step"
+select3="Third step"
+select4="Fourth step"
+select5="Fifth step"
+
 declare -A associative_array=(
     ["Step1"]="$select1"
     ["Step2"]="$select2"
@@ -21,7 +27,16 @@ declare -A associative_array=(
     ["Step5"]="$select5"
 )
 
+# Looped check.
 for key in "${indexed_array[@]}"; do
     echo "${key}"
-    ${pgcon} -c "${associative_array[${key}]}"
 done
+
+# Looped check.
+for result in "${associative_array[@]}"; do
+    echo "${result}"
+done
+
+# Individual check.
+#echo "${associative_array["Step1"]}"
+#echo "${associative_array["Step2"]}"
