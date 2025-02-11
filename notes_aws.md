@@ -94,9 +94,11 @@ ec2 to s3 is called Uploading the file.
 
 <h2>AWS Glue</h2>
 
-In AWS Glue, namespaces refer to the database name.
+In AWS Glue, namespaces refer to the database name.  
+The AWS Glue Data Catalog is a Hive metastore.  
+It serves as a fully managed, Apache Hive-compatible metadata repository.  
 
-<h2>AWS Glue CLI</h2>
+<h2>AWS Glue - CLI</h2>
 
 If you want to run an aws glue command from CLI, you must first update your aws config.
 
@@ -136,15 +138,19 @@ The syntax to repair a table in AWS Glue with a query, is:
 For example:
 MSCK REPAIR TABLE test_scott_db.facility_iceberg2;
 
-<h2>Crawlers</h2>
+<h2>AWS Glue - Crawlers</h2>
 
-You can use a crawler to crawl your tables and determine the datatypes of your tables.
-However, crawler does not have support for Iceberg tables.
+You can use a crawler to crawl your tables and determine the datatypes of your tables.  
+However, crawler does not have support for Iceberg tables.  
+
+For JSON files, crawlers will create tables, but not create columns.  
+So you need to manually create the schema for any JSON tables.  
 
 
 <h2>Loading JSON files</h2>
 
-AWS Glue does not natively support SQL INSERT INTO operations for Iceberg tables.
+AWS Glue does not natively support SQL INSERT INTO operations for Iceberg tables.  
 Instead, AWS Glue primarily uses Spark for ETL operations.
 
-So you need to use a Spark dataframe operation to write data to an Iceberg table.
+So you need to use a Spark DataFrame operation to read in a raw data file.  
+Then write out that DataFrame to an Iceberg table.  
