@@ -22,7 +22,7 @@ num_loops_completed = 0
 max_size = pyautogui.size()
 
 # Get the second ranges.
-max_delta_seconds = 30
+max_delta_seconds = 40
 lower_range = num_seconds_per_cycle - max_delta_seconds
 upper_range = num_seconds_per_cycle + max_delta_seconds
 
@@ -65,9 +65,8 @@ for i in range(total_loops):
     millisecond_random_num = random.randint(0, 1000) / 1000
 
     total_wait = current_random_num + millisecond_random_num
-    delta_wait = total_wait - 1
 
-    random_tab_num = random.randint(1, 6)
+    random_tab_num = random.randint(1, 8)
     toggle_num = str(random_tab_num)
 
     ctrl_down_lower_int = round(ctrl_down_lower * 10)
@@ -81,7 +80,5 @@ for i in range(total_loops):
     pyautogui.keyUp('command')
     pyautogui.keyUp(toggle_num)
 
-    # print(f'# of seconds to sleep: {total_wait} delta wait: {delta_wait}')
-
-    time.sleep(delta_wait)
+    time.sleep(total_wait)
     num_loops_completed += 1
