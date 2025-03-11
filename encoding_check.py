@@ -5,7 +5,7 @@ This is helpful when troubleshooting a file with bad unicode / ascii characters.
 chardet.detect returns a dictionary providing the encoding of the file.
 The key is: 'encoding' with value: 'encoding type'.
 
-Som common file encoding types are:
+Some common file encoding types are:
 UTF-8, UTF-16, Windows-1252, ascii
 
 Usage:
